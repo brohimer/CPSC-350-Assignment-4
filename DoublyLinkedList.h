@@ -1,77 +1,61 @@
 #include "ListNode.h"
-#include <iostream>
-using namespace std;
 
-///header file for SingleLinkedList
+//DoublyLinkedList header
+
 template <class T>
 class DoublyLinkedList{
   public:
-    DoublyLinkedList<T>();
-    ~DoublyLinkedList<T>();
+    DoublyLinkedList<T>(); //Constructor
+    ~DoublyLinkedList<T>(); //Destructor
 
-    void insertFront(T data);
-    void insertBack(T data);
-    T removeFront();
-    T removeBack();
-    T search(T val); //returns value or position of node, depends on implementation
-    T removeAtPos(int pos);
-    T remove(T val);
-    void remove_abs(ListNode<T>* v);
+    void insertFront(T data); //Inserts an element to the front
+    void insertBack(T data); //Inserts an element to the back
+    T removeFront(); //Removes a node from the front and returns its element
+    T removeBack(); //Removes a node from the front and returns its element
+    T search(T val); //Returns position of a searched node
+    T removeAtPos(int pos); //Removes a node at a specified position and returns its element
+    T remove(T val); //Removes a value-specified node and returns its value
 
-    unsigned int getSize();
-    bool isEmpty();
-    void printList();
+    unsigned int getSize(); //Returns the size
+    bool isEmpty(); //Returns true if the list is empty
+    void printList(); //Prints the list
 
   private:
-    ListNode<T>* front;
-    ListNode<T>* back;
-    unsigned int size;
-
+    ListNode<T>* front; //Pointer to the front of the list
+    ListNode<T>* back; //Pointer to the back of the list
+    unsigned int size; //Size of the list
 };
 
+//-----------------------------
 
-//implementation file for DoublyLinkedList<T>
+//DoublyLinkedList implementation
+
+//Default constructor
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList()
 {
-  //empty list
+  front = new ListNode<T>();
+  back = new ListNode<T>();
   size = 0;
-  front = 0;
-  back = 0;
+  front = NULL;
+  back = NULL;
 }
 
+//Destructor
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList()
 {
-  //do this on our own
-}
-
-template <class T>
-unsigned int DoublyLinkedList<T>::getSize()
-{
-  return size;
-}
-
-template <class T>
-bool DoublyLinkedList<T>::isEmpty()
-{
-  return (size == 0);
-}
-
-//while the current pointer does not == 0
-//print the data of current address, then set current to NEXT address
-template <class T>
-void DoublyLinkedList<T>::printList()
-{
-  cout << "List: " << endl;
-  ListNode<T>* curr = front;
-  while (curr != 0)
+  while (!this->isEmpty())
   {
-    cout << curr->data << endl;
-    curr = curr->next;
+    this->removeFront();
   }
+  front = NULL;
+  back = NULL;
+  delete front;
+  delete back;
 }
 
+//Inserts an element to the front
 template <class T>
 void DoublyLinkedList<T>::insertFront(T d)
 {
@@ -91,6 +75,7 @@ void DoublyLinkedList<T>::insertFront(T d)
   size++;
 }
 
+//Inserts an element to the back
 template <class T>
 void DoublyLinkedList<T>::insertBack(T d)
 {
@@ -114,6 +99,7 @@ void DoublyLinkedList<T>::insertBack(T d)
   size++;
 }
 
+//Removes a node from the front and returns its element
 template <class T>
 T DoublyLinkedList<T>::removeFront()
 {
@@ -124,20 +110,20 @@ T DoublyLinkedList<T>::removeFront()
     ListNode<T>* temp = front;
     //->next goes from front to back, left to right
     //front->next->_____________________back
-    if(front->next == 0)
+    if(front->next == NULL)
     {
       //if this is true, we have only one node in list
       //back pointer is set to null
-      back = 0;
+      back = NULL;
     }
     else //if there is more than one node in the list
     {
       //setting the 2nd element's backwards pointer to null
       //b/c we're about to remove the first element
-      front->next->prev = 0;
+      front->next->prev = NULL;
     }
     front = front->next;
-    temp->next = 0;
+    temp->next = NULL;
     int tmp = temp->data;
     size--;
 
@@ -146,6 +132,7 @@ T DoublyLinkedList<T>::removeFront()
   }
 }
 
+//Removes a node from the back and returns its element
 template <class T>
 T DoublyLinkedList<T>::removeBack()
 {
@@ -156,20 +143,20 @@ T DoublyLinkedList<T>::removeBack()
     ListNode<T>* temp = back;
     //->next goes from front to back, left to right
     //front->next____________________prev<-back
-    if(back->prev == 0)
+    if(back->prev == NULL)
     {
       //if this is true, we have only one node in list
       //back pointer is set to null
-      front = 0;
+      front = NULL;
     }
     else //if there is more than one node in the list
     {
       //setting the 2nd element's backwards pointer to null
       //b/c we're about to remove the first element
-      back->prev->next = 0;
+      back->prev->next = NULL;
     }
     back = back->prev;
-    temp->next = 0;
+    temp->prev = NULL;
     int tmp = temp->data;
     size--;
 
@@ -178,6 +165,7 @@ T DoublyLinkedList<T>::removeBack()
   }
 }
 
+//Returns position of a searched node
 template <class T>
 //insert the value we're looking for
 T DoublyLinkedList<T>::search(T val)
@@ -185,7 +173,7 @@ T DoublyLinkedList<T>::search(T val)
   int position = -1;
   ListNode<T>* curr = front;
 
-  while (curr != 0)
+  while (curr != NULL)
   {
     //iterate and attempt to find the value
     position++;
@@ -193,7 +181,7 @@ T DoublyLinkedList<T>::search(T val)
     else curr = curr->next;
   }
 
-  if (curr==0)
+  if (curr == NULL)
   //this means we went through the whole loop
   //wihout finding the value
     position = -1;
@@ -202,6 +190,7 @@ T DoublyLinkedList<T>::search(T val)
 
 }
 
+//Removes a node at a specified position and returns its element
 template <class T>
 T DoublyLinkedList<T>::removeAtPos(int pos)
 {
@@ -226,20 +215,25 @@ T DoublyLinkedList<T>::removeAtPos(int pos)
     //below here we have the position of the node to be deleted
     //so now previous next becomes current next instead of current.
 
+    //we found the position of the node to be deleted
     prev->next = curr->next;
-    curr->next = 0;
-
+    curr->next->prev = prev;
+    curr->prev = NULL;
+    curr->next = NULL;
     int temp = curr->data;
+    curr = NULL;
+    prev = NULL;
     delete curr;
+    delete prev;
+
     size--;
     return temp;
   }
-
   else
     cout << "Position Invalid or List Empty." << endl;
-
 }
 
+//Removes a value-specified node and returns its value
 template <class T>
 T DoublyLinkedList<T>::remove(T val)
 {
@@ -250,24 +244,24 @@ T DoublyLinkedList<T>::remove(T val)
   {
     curr = curr->next;
     //if it's not in the list
-    if (curr==0)
-      return 0;
+    if (curr == NULL)
+      return NULL;
   }
 
-  if (curr==front)
+  if (curr == front)
   {
     //removeFront();
     front = curr->next;
-    curr->next->prev = 0;
+    curr->next->prev = NULL;
   }
   //problem with remove function, curr is not engaged even when at the back!!
   //doesn't seem to recognize that it's at the back or something like that
   //else if (curr->data==1) works with this code b/c it's also the only one
-  else if (curr->next==0)
+  else if (curr->next == NULL)
   {
     //removeBack();
     back = curr->prev;
-    curr->prev->next = 0;
+    curr->prev->next = NULL;
   }
   else
   {
@@ -275,8 +269,8 @@ T DoublyLinkedList<T>::remove(T val)
     curr->prev->next = curr->next;
   }
 
-  curr->next = 0;
-  curr->prev = 0;
+  curr->next = NULL;
+  curr->prev = NULL;
   //set temp eqal to target data so that
   //after we delete it, we can still return something
   int temp = curr->data;
@@ -284,4 +278,33 @@ T DoublyLinkedList<T>::remove(T val)
   size--;
 
   return temp;
+}
+
+//Returns the size
+template <class T>
+unsigned int DoublyLinkedList<T>::getSize()
+{
+  return size;
+}
+
+//Returns true if the list is empty
+template <class T>
+bool DoublyLinkedList<T>::isEmpty()
+{
+  return (size == 0);
+}
+
+//Prints the list
+template <class T>
+void DoublyLinkedList<T>::printList()
+{
+  cout << "List: " << endl;
+  ListNode<T>* curr = front;
+  //while the current pointer does not == 0
+  //print the data of current address, then set current to NEXT address
+  while (curr != NULL)
+  {
+    cout << curr->data << endl;
+    curr = curr->next;
+  }
 }

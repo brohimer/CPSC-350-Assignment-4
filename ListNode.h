@@ -1,34 +1,52 @@
-///header file for single linked list
+#ifndef LISTNODE_H
+#define LISTNODE_H
+
+#include <iostream>
+using namespace std;
+
+///ListNode header
+
 template <class T>
-class ListNode{
+class ListNode
+{
   public:
     T data;
     ListNode<T>* next;
     ListNode<T>* prev;
 
-    ListNode(); //default constructor
-    ListNode(T d); //overload
-    ~ListNode();
-
+    ListNode(); //Default constructor
+    ListNode(T d); //Overloaded constructor
+    ~ListNode(); //Destructor
 };
 
+#endif
+
+//-----------------------------
+
+//ListNode implementation
+
+//Default constructor
 template <class T>
-//ListNode implementation file
-ListNode<T>:: ListNode(){
-  data = 0;
-  next = 0;//might have to use 0ptr
-  prev = 0;
+ListNode<T>:: ListNode()
+{
+  data = '\0';
+  next = NULL;
+  prev = NULL;
 }
 
+//Overloaded constructor
 template <class T>
-//next pointer is always set to 0, b/c we don't know whwere to insert this node
-ListNode<T>:: ListNode(T d){
+ListNode<T>:: ListNode(T d)
+{
   data = d;
-  next = 0;
-  prev = 0;
+  next = NULL;
+  prev = NULL;
 }
 
+//Destructor
 template <class T>
-ListNode<T>::~ListNode(){
-  //we make this
+ListNode<T>::~ListNode()
+{
+  delete next;
+  delete prev;
 }
