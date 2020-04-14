@@ -197,7 +197,17 @@ T DoublyLinkedList<T>::removeAtPos(int pos)
   //add some error checking to make sure our pos is not negative
   //and is within the bounds of the list
 
-  if ((pos > 0) && (isEmpty() == false))
+  if(pos == 0)
+  {
+    return removeFront();
+  }
+
+  else if(pos == size-1)
+  {
+    return removeBack();
+  }
+
+  else if ((pos > 0) && (isEmpty() == false))
   {
     //start at beginning so that we can traverse the linkedlist
     int idx = 0;
@@ -229,6 +239,7 @@ T DoublyLinkedList<T>::removeAtPos(int pos)
     size--;
     return temp;
   }
+
   else
     cout << "Position Invalid or List Empty." << endl;
 }
