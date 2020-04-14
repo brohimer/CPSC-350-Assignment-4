@@ -5,7 +5,7 @@ class Student
 
   public:
     Student(); //Default constructor
-    //Student(); //Overloaded constructor
+    Student(int time_needed); //Overloaded constructor
     ~Student(); //Destructor
 
     void update_tick();
