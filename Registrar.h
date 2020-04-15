@@ -1,3 +1,5 @@
+#include "Window.h"
+
 class Registrar
 {
 

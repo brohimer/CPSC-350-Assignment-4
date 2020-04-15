@@ -1,6 +1,7 @@
 #include "Student.h"
+#include "AbstractList.h"
 
-class StudentQueue
+class StudentQueue : public AbstractList<Student>
 {
   //Student Queue: isEmpty(), size(), insert(),
   //remove() (remember this is fifo)
@@ -9,12 +10,18 @@ class StudentQueue
     StudentQueue(); //Default constructor
     ~StudentQueue(); //Destructor
 
+    void insertFront(Student data);
+    void insertBack(Student data);
+    Student removeFront();
+    Student removeBack();
+    Student removeAtPos(int pos);
+    Student remove(Student val);
+
     bool isEmpty();
     int size();
-    void insert();
-    Student* remove();
+
 
   private:
-    DoublyLinkedList<int>* list;
+    DoublyLinkedList<Student>* list;
 
 };

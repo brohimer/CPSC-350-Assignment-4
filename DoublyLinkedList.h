@@ -124,7 +124,7 @@ T DoublyLinkedList<T>::removeFront()
     }
     front = front->next;
     temp->next = NULL;
-    int tmp = temp->data;
+    T tmp = temp->data;
     size--;
 
     delete temp;
@@ -230,7 +230,7 @@ T DoublyLinkedList<T>::removeAtPos(int pos)
     curr->next->prev = prev;
     curr->prev = NULL;
     curr->next = NULL;
-    int temp = curr->data;
+    T temp = curr->data;
     curr = NULL;
     prev = NULL;
     delete curr;
@@ -284,7 +284,7 @@ T DoublyLinkedList<T>::remove(T val)
   curr->prev = NULL;
   //set temp eqal to target data so that
   //after we delete it, we can still return something
-  int temp = curr->data;
+  T temp = curr->data;
   delete curr;
   size--;
 

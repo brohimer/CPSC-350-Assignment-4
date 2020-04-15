@@ -23,3 +23,8 @@ void Student::update_tick()
 {
   number_of_minutes_waited += 1;
 }
+
+void Student::printInfo()
+{
+  cout << "hello I'm a student hi" << endl;
+}
