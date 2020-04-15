@@ -4,11 +4,11 @@
 #include "DoublyLinkedList.h"
 
 template<class T>
-class AbstractList
+class List
 {
   public:
-    AbstractList();
-    virtual ~AbstractList();
+    List();
+    virtual ~List();
 
     virtual void insertFront(T data) = 0;
     virtual void insertBack(T data) = 0;
@@ -17,21 +17,13 @@ class AbstractList
     virtual T removeAtPos(int pos) = 0;
     virtual T remove(T val) = 0;
 
-  private:
-    DoublyLinkedList<T>* list;
 
 };
 
 #endif
 
 template<class T>
-AbstractList<T>::AbstractList()
-{
-
-}
+List<T>::List() { }
 
 template<class T>
-AbstractList<T>::~AbstractList()
-{
-
-}
+List<T>::~List() { }

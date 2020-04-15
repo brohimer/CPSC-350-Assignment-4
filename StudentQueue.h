@@ -1,7 +1,7 @@
 #include "Student.h"
-#include "AbstractList.h"
+#include "List.h"
 
-class StudentQueue : public AbstractList<Student>
+class StudentQueue : public List<Student>
 {
   //Student Queue: isEmpty(), size(), insert(),
   //remove() (remember this is fifo)

@@ -2,7 +2,7 @@
 
 StudentQueue::StudentQueue()
 {
-  list = new DoublyLinkedList<Student>;
+  list = new DoublyLinkedList<Student>();
 }
 
 StudentQueue::~StudentQueue()
