@@ -3,6 +3,7 @@
 Window::Window()
 {
   Occupied = false;
+  total_idle_time = 0;
 }
 
 Window::~Window()
@@ -22,4 +23,9 @@ void Window::setOccupied()
 void Window::setUnoccupied()
 {
   Occupied = false;
+}
+
+void Window::increment_idle_time()
+{
+  total_idle_time += 1;
 }
