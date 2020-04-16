@@ -16,6 +16,7 @@ bool Window::isOccupied()
 {
   return Occupied;
 }
+
 void Window::setOccupied()
 {
   Occupied = true;
@@ -39,4 +40,9 @@ void Window::insert_student(Student* student)
 Student* Window::return_student()
 {
   return student_at_window;
+}
+
+int Window::getIdleTime()
+{
+  return total_idle_time;
 }

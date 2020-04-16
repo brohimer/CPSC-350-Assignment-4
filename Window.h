@@ -15,6 +15,7 @@ class Window
     void increment_idle_time();
     void insert_student(Student* student);
     Student* return_student();
+    int getIdleTime();
 
 
   private:

@@ -21,3 +21,5 @@ Student 2
 ## 3. DESCRIPTION
 
 ## 4. REFERENCES
+- https://www.tutorialspoint.com/cplusplus/cpp_interfaces.htm
+- https://stackoverflow.com/questions/7558280/initializing-an-array-of-objects

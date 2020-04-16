@@ -17,6 +17,6 @@ class Registrar
     int current_tick;
     int windows_open;
     int students_waiting;
-    Window* windows[];
+    Window* windows;
 
 };

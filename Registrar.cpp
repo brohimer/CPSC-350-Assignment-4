@@ -14,22 +14,12 @@ Registrar::Registrar(int num_windows)
 
   windows_open = num_windows;
 
-  windows[num_windows];
+  windows = new Window[num_windows];
 
   for (int i = 0; i < num_windows; i++)
   {
-    Window* windy = new Window();
-    windows[i] = windy;
-    cout << "occ: " << windy->isOccupied() << endl;
-    // cout << "occ: " << windy->isOccupied() << endl;
-    windy = NULL;
-    delete windy;
-  }
-
-  for (int i = 0; i < num_windows; i++)
-  {
-    windows[i]->setUnoccupied();
-    cout << i << " " << windows[i]->isOccupied() << endl;
+    cout << windows[i].isOccupied() << endl;
+    cout << windows[i].getIdleTime() << endl;
   }
 }
 
