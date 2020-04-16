@@ -10,7 +10,6 @@ class Registrar
     Registrar(); //Default constructor
     ~Registrar(); //Destructor
 
-    void run_simulation();
     void update_students_waiting();
 
   private:

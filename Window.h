@@ -10,9 +10,11 @@ class Window
     bool isOccupied();
     void setOccupied();
     void setUnoccupied();
+    void increment_idle_time();
 
 
   private:
     bool Occupied;
+    int total_idle_time;
 
 };

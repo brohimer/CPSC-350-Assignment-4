@@ -12,12 +12,6 @@ Registrar::~Registrar()
 
 }
 
-void Registrar::run_simulation()
-{
-  //do a while loop through the file
-  //and skip every 3 i Guess
-}
-
 void Registrar::update_students_waiting()
 {
   //students_waiting = student_queue->size();
