@@ -13,6 +13,7 @@ class Registrar
     ~Registrar(); //Destructor
 
     void update_students_waiting();
+    int get_students_waiting();
     void add_student_to_queue(Student* student);
 
   private:

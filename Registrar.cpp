@@ -33,7 +33,12 @@ Registrar::~Registrar()
 
 void Registrar::update_students_waiting()
 {
-  //students_waiting = student_queue->size();
+  students_waiting = students->size();
+}
+
+int Registrar::get_students_waiting()
+{
+  return students_waiting;
 }
 
 void Registrar::add_student_to_queue(Student* student)

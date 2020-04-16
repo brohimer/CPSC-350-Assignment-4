@@ -7,7 +7,10 @@ int main(int argc, char** argv)
   //making a new registrar with 5 windows
   Registrar* reggie = new Registrar(5);
   Student* notolivermathias = new Student();
+  cout << reggie->get_students_waiting() << endl;
   reggie->add_student_to_queue(notolivermathias);
+  reggie->update_students_waiting();
+  cout << reggie->get_students_waiting() << endl;
 
   // StudentQueue* q = new StudentQueue();
   // Student* s = new Student();
