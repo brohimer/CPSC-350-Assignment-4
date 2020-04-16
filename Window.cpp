@@ -4,6 +4,7 @@ Window::Window()
 {
   Occupied = false;
   total_idle_time = 0;
+  //cout << "Window Created" << endl;
 }
 
 Window::~Window()
