@@ -55,6 +55,8 @@ int main(int argc, char** argv)
   increment tick;
   }
 
+  then here we print out the window stats and student stats.
+
   */
 
 
