@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "StudentQueue.h"
 
 class Registrar
 {
@@ -12,11 +13,13 @@ class Registrar
     ~Registrar(); //Destructor
 
     void update_students_waiting();
+    void add_student_to_queue(Student* student);
 
   private:
     int current_tick;
     int windows_open;
     int students_waiting;
     Window* windows;
+    StudentQueue* students;
 
 };

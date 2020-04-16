@@ -18,9 +18,12 @@ Registrar::Registrar(int num_windows)
 
   for (int i = 0; i < num_windows; i++)
   {
-    cout << windows[i].isOccupied() << endl;
-    cout << windows[i].getIdleTime() << endl;
+    windows[i].isOccupied();
+    windows[i].getIdleTime();
   }
+
+  //making a new empty student queue
+  students = new StudentQueue();
 }
 
 Registrar::~Registrar()
@@ -31,4 +34,9 @@ Registrar::~Registrar()
 void Registrar::update_students_waiting()
 {
   //students_waiting = student_queue->size();
+}
+
+void Registrar::add_student_to_queue(Student* student)
+{
+  students->insertBack(*student);
 }
