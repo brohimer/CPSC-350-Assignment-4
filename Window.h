@@ -1,3 +1,5 @@
+#include "Student.h"
+
 class Window
 {
 
@@ -11,10 +13,13 @@ class Window
     void setOccupied();
     void setUnoccupied();
     void increment_idle_time();
+    void insert_student(Student* student);
+    Student* return_student();
 
 
   private:
     bool Occupied;
     int total_idle_time;
+    Student* student_at_window;
 
 };

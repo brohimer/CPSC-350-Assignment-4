@@ -8,6 +8,7 @@ class Registrar
 
   public:
     Registrar(); //Default constructor
+    Registrar(int num_windows); //overload constructor
     ~Registrar(); //Destructor
 
     void update_students_waiting();
@@ -16,5 +17,6 @@ class Registrar
     int current_tick;
     int windows_open;
     int students_waiting;
+    Window* windows[];
 
 };

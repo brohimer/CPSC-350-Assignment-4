@@ -1,8 +1,12 @@
 #include "StudentQueue.h"
 #include "Simulation.h"
+#include "Registrar.h"
 
 int main(int argc, char** argv)
 {
+
+  //making a new registrar with 5 windows
+  Registrar* reggie = new Registrar(5);
 
   // StudentQueue* q = new StudentQueue();
   // Student* s = new Student();

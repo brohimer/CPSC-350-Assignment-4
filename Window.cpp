@@ -29,3 +29,13 @@ void Window::increment_idle_time()
 {
   total_idle_time += 1;
 }
+
+void Window::insert_student(Student* student)
+{
+  student_at_window = student;
+}
+
+Student* Window::return_student()
+{
+  return student_at_window;
+}
