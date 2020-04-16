@@ -14,6 +14,49 @@ int main(int argc, char** argv)
   cout << reggie->get_number_of_windows_open() << endl;
   cout << reggie->get_index_of_first_available_window() << endl;
 
+  /*
+  Flow:
+  Read in file
+  Parse the number of windows -> create those
+  Parse the Students(w/ time arrived, time needed) -> Create those students in the queue
+
+  ALSO: make sure these students are added in order of arrival!!
+  The queue should also have an int return that tells us how many student behind the
+  first one have the same arrival time.
+
+  then we start the loop:
+  while (end_queue != initial_arrival_queue size)
+  {
+
+   //takes students from windows that are done and moves them to the done queue
+   windows.clear_students_that_are_done();
+   //gets current open windows
+   int current_open_windows = windows.get_number_of_windows_open();
+
+  if (queue.peek_first_student.arrival time == tick)
+  {
+    //down here we know at least the first student has arrived.
+    int number_of_students_actually_in_line = queue.num_students_after_first_that_arrived_at_same_time
+    try
+    {
+      for (i in range(number_of_students_actually_in_line))
+      {
+        windows.add_student_to_first_avail_window(queue.get_first_student)
+      }
+    }
+    except:
+      skip
+
+  }
+
+  //just to make sure we increment EVERY arrived student's wait time.
+  queue.increment_all_student_wait_times_if_in_line_and_have_arrived();
+  windows.increment_all_student_time_at_window()
+  increment tick;
+  }
+
+  */
+
 
   // StudentQueue* q = new StudentQueue();
   // Student* s = new Student();
