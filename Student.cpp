@@ -30,3 +30,8 @@ void Student::printInfo()
   cout << "Minute arrived: " << minute_arrived << endl;
   cout << "Minutes waited: " << number_of_minutes_waited << endl;
 }
+
+int Student::get_arrival_time()
+{
+  return minute_arrived;
+}

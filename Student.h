@@ -16,6 +16,7 @@ class Student
 
     void update_tick();
     void printInfo();
+    int get_arrival_time();
 
   private:
     int minutes_needed_at_window;

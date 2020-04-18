@@ -35,6 +35,7 @@ void Window::increment_idle_time()
 void Window::insert_student(Student* student)
 {
   student_at_window = student;
+  Occupied = true;
 }
 
 Student* Window::return_student()

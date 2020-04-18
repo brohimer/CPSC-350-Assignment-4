@@ -20,6 +20,8 @@ class StudentQueue : public List<Student>
     bool isEmpty();
     int size();
 
+    int numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime();
+
 
   private:
     DoublyLinkedList<Student>* list;

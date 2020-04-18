@@ -49,3 +49,15 @@ int StudentQueue::size()
 {
   return list->getSize();
 }
+
+int StudentQueue::numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime()
+{
+  int return_value = 0;
+  int first_student_arival_time = list->returnObjectAtIndex(0).get_arrival_time();
+  for (int i = 1; i < size(); i++)
+  {
+    Student current_student = list->returnObjectAtIndex(i);
+  }
+
+  return first_student_arival_time;
+}
