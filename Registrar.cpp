@@ -80,3 +80,9 @@ bool Registrar::empty_queue()
 {
   return students_waiting == 0;
 }
+
+void Registrar::update_students_waiting()
+{
+  //add this later, check all students w wait times more than tick
+  //students_waiting == 0;
+}

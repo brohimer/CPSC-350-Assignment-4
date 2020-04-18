@@ -21,6 +21,7 @@ class Registrar
     void add_student_to_queue(Student* student);
     Student remove_student_from_queue();
     bool empty_queue();
+    void update_students_waiting();
 
   private:
     int current_tick;
