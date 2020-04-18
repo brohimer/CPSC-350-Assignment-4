@@ -29,7 +29,7 @@ Registrar::~Registrar()
 
 int Registrar::get_index_of_first_available_window()
 {
-  for (int i = 0; i < total_windows; i++)
+  for (int i = 0; i < total_windows; ++i)
   {
     if (windows[i].isOccupied() == false)
     {
@@ -41,10 +41,9 @@ int Registrar::get_index_of_first_available_window()
 void Registrar::update_number_of_windows_open()
 {
   int current_windows_open = 0;
-  for (int i = 0; i < total_windows; i++)
+  for (int i = 0; i < total_windows; ++i)
   {
-    if (windows[i].isOccupied()) ;
-    else
+    if (!windows[i].isOccupied())
       current_windows_open += 1;
   }
   windows_open = current_windows_open;

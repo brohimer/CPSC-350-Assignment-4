@@ -1,5 +1,4 @@
 #include "Simulation.h"
-#include "Registrar.h"
 
 int main(int argc, char** argv)
 {
