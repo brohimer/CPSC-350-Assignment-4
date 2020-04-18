@@ -54,10 +54,10 @@ int Registrar::get_number_of_windows_open()
   return windows_open;
 }
 
-void Registrar::update_students_waiting()
-{
-  students_waiting = students->size();
-}
+// void Registrar::update_students_waiting()
+// {
+//   students_waiting = students->size();
+// }
 
 int Registrar::get_students_waiting()
 {
@@ -67,4 +67,16 @@ int Registrar::get_students_waiting()
 void Registrar::add_student_to_queue(Student* student)
 {
   students->insertBack(*student);
+  students_waiting++;
+}
+
+Student Registrar::remove_student_from_queue()
+{
+  students_waiting--;
+  return students->removeFront();
+}
+
+bool Registrar::empty_queue()
+{
+  return students_waiting == 0;
 }

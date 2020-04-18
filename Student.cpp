@@ -7,10 +7,10 @@ Student::Student()
   number_of_minutes_waited = 0;
 }
 
-Student::Student(int time_needed)
+Student::Student(int duration, int arrival)
 {
-  minutes_needed_at_window = time_needed;
-  minute_arrived = 0;
+  minutes_needed_at_window = duration;
+  minute_arrived = arrival;
   number_of_minutes_waited = 0;
 }
 
@@ -26,5 +26,7 @@ void Student::update_tick()
 
 void Student::printInfo()
 {
-  cout << "hello I'm a student hi" << endl;
+  cout << "Minutes needed: " << minutes_needed_at_window << endl;
+  cout << "Minute arrived: " << minute_arrived << endl;
+  cout << "Minutes waited: " << number_of_minutes_waited << endl;
 }

@@ -12,13 +12,15 @@ class Registrar
     Registrar(int num_windows); //overload constructor
     ~Registrar(); //Destructor
 
-    void update_students_waiting();
+    // void update_students_waiting();
     int get_students_waiting();
 
     int get_index_of_first_available_window();
     void update_number_of_windows_open();
     int get_number_of_windows_open();
     void add_student_to_queue(Student* student);
+    Student remove_student_from_queue();
+    bool empty_queue();
 
   private:
     int current_tick;

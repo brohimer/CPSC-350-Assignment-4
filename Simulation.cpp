@@ -38,23 +38,27 @@ void Simulation::start(string file)
           newBlock = false;
           lineOfStudentCount = true;
         }
-        //Getting the number of students
+        //Non-first lines of an information block
         else if (newBlock == false)
         {
+          //Getting the number of students
           if (lineOfStudentCount == true)
           {
             cout << line << " Finding the count" << endl;
             targetLineNumber = lineNumber + stoi(line);
             lineOfStudentCount = false;
           }
-          //Making new students
+          //Making students with waiting times
           else if (lineNumber != targetLineNumber)
           {
             cout << line << " Making a student" << endl;
+            m_registrar->add_student_to_queue(new Student(stoi(line), minuteArrived));
           }
+          //This is the last student before next block of info
           else
           {
             cout << line << " Making last student" << endl;
+            m_registrar->add_student_to_queue(new Student(stoi(line), minuteArrived));
             newBlock = true;
           }
         }
@@ -70,4 +74,14 @@ void Simulation::start(string file)
       lineNumber++;
     }
   }
+  inFS.close();
+
+  //Just printing each student in the queue to test
+  while (!m_registrar->empty_queue())
+  {
+    cout << "\nRemoving student from front " << endl;
+    m_registrar->remove_student_from_queue().printInfo();
+  }
+
+
 }

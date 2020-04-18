@@ -8,7 +8,6 @@ int main(int argc, char** argv)
   Student* notolivermathias = new Student();
   cout << reggie->get_students_waiting() << endl;
   reggie->add_student_to_queue(notolivermathias);
-  reggie->update_students_waiting();
   cout << reggie->get_students_waiting() << endl;
   cout << reggie->get_number_of_windows_open() << endl;
   cout << reggie->get_index_of_first_available_window() << endl;

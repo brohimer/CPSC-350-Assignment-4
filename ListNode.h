@@ -29,7 +29,6 @@ class ListNode
 template <class T>
 ListNode<T>:: ListNode()
 {
-  data = '\0';
   next = NULL;
   prev = NULL;
 }
