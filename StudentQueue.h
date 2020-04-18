@@ -21,6 +21,7 @@ class StudentQueue : public List<Student>
     int size();
 
     int numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime();
+    int numberOfArrivedStudents(int current_tick);
 
 
   private:

@@ -22,6 +22,8 @@ class Registrar
     Student remove_student_from_queue();
     bool empty_queue();
     void update_students_waiting();
+    void update_current_tick();
+    void send_first_student_in_line_to_first_open_window();
 
   private:
     int current_tick;
@@ -30,5 +32,6 @@ class Registrar
     int students_waiting;
     Window* windows;
     StudentQueue* students;
+    StudentQueue* doneStudents;
 
 };

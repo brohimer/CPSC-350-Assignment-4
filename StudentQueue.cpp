@@ -65,3 +65,18 @@ int StudentQueue::numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime()
 
   return return_value;
 }
+
+int StudentQueue::numberOfArrivedStudents(int current_tick)
+{
+  int return_value = 0;
+  for (int i = 1; i < size(); i++)
+  {
+    Student current_student = list->returnObjectAtIndex(i);
+    if (current_student.get_arrival_time() <= current_tick)
+    {
+      return_value++;
+    }
+  }
+
+  return return_value;
+}
