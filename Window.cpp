@@ -38,6 +38,12 @@ void Window::insert_student(Student* student)
   Occupied = true;
 }
 
+Student* Window::remove_student()
+{
+  Occupied = false;
+  return student_at_window;
+}
+
 Student* Window::return_student()
 {
   return student_at_window;

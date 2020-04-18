@@ -52,6 +52,7 @@ void Registrar::update_number_of_windows_open()
 
 int Registrar::get_number_of_windows_open()
 {
+  update_number_of_windows_open();
   return windows_open;
 }
 
@@ -95,3 +96,7 @@ void Registrar::send_first_student_in_line_to_first_open_window()
   windows[get_index_of_first_available_window()].insert_student(&first_student);
   windows_open--;
 }
+
+//increment student wait times in queueu
+//increment students timea at windows_open
+//clear done students from windows.
