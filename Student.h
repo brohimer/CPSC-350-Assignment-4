@@ -17,11 +17,15 @@ class Student
     void update_tick();
     void printInfo();
     int get_arrival_time();
+    void increment_number_of_minutes_at_window();
+    int get_number_of_minutes_at_window();
+    bool isDone();
 
   private:
     int minutes_needed_at_window;
     int minute_arrived;
     int number_of_minutes_waited;
+    int number_of_minutes_at_window;
 };
 
 #endif

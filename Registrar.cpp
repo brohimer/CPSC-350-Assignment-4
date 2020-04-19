@@ -18,6 +18,11 @@ Registrar::Registrar(int num_windows)
   //making an array of open windows
   windows = new Window[num_windows];
 
+  for (int i = 0; i < total_windows; ++i)
+  {
+    windows[i].setUnoccupied();
+  }
+
   //making a new empty student queue
   students = new StudentQueue();
   doneStudents = new StudentQueue();
@@ -42,7 +47,7 @@ int Registrar::get_index_of_first_available_window()
 void Registrar::update_number_of_windows_open()
 {
   int current_windows_open = 0;
-  for (int i = 0; i < total_windows; ++i)
+  for (int i = 0; i < total_windows; i++)
   {
     if (!windows[i].isOccupied())
       current_windows_open += 1;
@@ -97,6 +102,30 @@ void Registrar::send_first_student_in_line_to_first_open_window()
   windows_open--;
 }
 
-//increment student wait times in queueu
-//increment students timea at windows_open
+//increment students time at windows
+void Registrar::increment_student_window_times_if_at_windows()
+{
+  for (int i = 0; i < total_windows; i++)
+  {
+    if (windows[i].isOccupied())
+    {
+      cout << "T" << i << endl;
+      windows[i].increment_student_window_time();
+    }
+  }
+}
+
 //clear done students from windows.
+void Registrar::move_done_students()
+{
+  for (int i = 0; i < total_windows; i++)
+  {
+    if (windows[i].isOccupied())
+    {
+      if (windows[i].check_if_student_is_done())
+      {
+        doneStudents->insertBack(*windows[i].remove_student());
+      }
+    }
+  }
+}

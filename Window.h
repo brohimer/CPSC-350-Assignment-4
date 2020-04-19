@@ -17,6 +17,8 @@ class Window
     Student* remove_student();
     Student* return_student();
     int getIdleTime();
+    void increment_student_window_time();
+    bool check_if_student_is_done();
 
 
   private:

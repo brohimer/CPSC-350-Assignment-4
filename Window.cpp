@@ -4,6 +4,7 @@ Window::Window()
 {
   Occupied = false;
   total_idle_time = 0;
+  student_at_window = NULL;
   //cout << "Window Created" << endl;
 }
 
@@ -32,6 +33,13 @@ void Window::increment_idle_time()
   total_idle_time += 1;
 }
 
+void Window::increment_student_window_time()
+{
+  cout << "i" << endl;
+  student_at_window->increment_number_of_minutes_at_window();
+  cout << "c" << endl;
+}
+
 void Window::insert_student(Student* student)
 {
   student_at_window = student;
@@ -52,4 +60,9 @@ Student* Window::return_student()
 int Window::getIdleTime()
 {
   return total_idle_time;
+}
+
+bool Window::check_if_student_is_done()
+{
+  return (student_at_window->isDone());
 }

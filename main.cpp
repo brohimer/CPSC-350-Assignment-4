@@ -24,6 +24,7 @@ int main(int argc, char** argv)
   cout << reggie->get_index_of_first_available_window() << endl;
   reggie->send_first_student_in_line_to_first_open_window();
   cout << reggie->get_number_of_windows_open() << endl;
+  reggie->move_done_students();
 
   /*
   Flow:
