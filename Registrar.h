@@ -26,6 +26,7 @@ class Registrar
     void send_first_student_in_line_to_first_open_window();
     void increment_student_window_times_if_at_windows();
     void move_done_students();
+    void increment_all_student_wait_times_if_in_line_and_have_arrived();
 
   private:
     int current_tick;

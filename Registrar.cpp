@@ -131,8 +131,14 @@ void Registrar::move_done_students()
       if (windows[i].check_if_student_is_done())
       {
         doneStudents->insertBack(windows[i].remove_student());
+        cout << "Mins in List: "<< doneStudents->removeFront().get_number_of_minutes_in_line() << endl;
         cout << "Moved Done Student" << endl;
       }
     }
   }
+}
+
+void Registrar::increment_all_student_wait_times_if_in_line_and_have_arrived()
+{
+  students->increment_all_student_wait_times_if_in_line_and_have_arrived(current_tick);
 }

@@ -16,6 +16,7 @@ class DoublyLinkedList{
     T removeAtPos(int pos); //Removes a node at a specified position and returns its element
     T remove(T val); //Removes a value-specified node and returns its value
     T returnObjectAtIndex(int i);
+    T* returnObjectPointerAtIndex(int i);
 
     unsigned int getSize(); //Returns the size
     bool isEmpty(); //Returns true if the list is empty
@@ -339,5 +340,25 @@ T DoublyLinkedList<T>::returnObjectAtIndex(int i)
   }
 
   T temp = curr->data;
+  return temp;
+}
+
+template <class T>
+T* DoublyLinkedList<T>::returnObjectPointerAtIndex(int i)
+{
+  //make sure it's not empty first
+  int idx = 0;
+  ListNode<T>* curr = front;
+  ListNode<T>* prev = front;
+
+  //now we loop until our current and prev pointers are in the right position
+  while(idx != i)
+  {
+    prev = curr;
+    curr = curr->next;
+    idx++;
+  }
+
+  T* temp = &curr->data;
   return temp;
 }

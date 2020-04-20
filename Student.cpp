@@ -29,12 +29,18 @@ void Student::update_tick()
 void Student::increment_number_of_minutes_at_window()
 {
   number_of_minutes_at_window += 1;
-  cout << "Incremented to: "<< number_of_minutes_at_window << endl;
+  cout << "Incremented Window Mins to: "<< number_of_minutes_at_window << endl;
 }
 
 int Student::get_number_of_minutes_at_window()
 {
   return number_of_minutes_at_window;
+}
+
+int Student::get_number_of_minutes_in_line()
+{
+  return number_of_minutes_waited;
+  cout << "incremented time in list" << endl;
 }
 
 void Student::printInfo()
@@ -51,7 +57,7 @@ int Student::get_arrival_time()
 
 bool Student::isDone()
 {
-  if (number_of_minutes_at_window == minutes_needed_at_window)
+  if (number_of_minutes_at_window >= minutes_needed_at_window)
   {
     return true;
   }

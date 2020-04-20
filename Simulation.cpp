@@ -13,15 +13,21 @@ Simulation::~Simulation()
 void Simulation::test()
 {
   Registrar* reggie = new Registrar(5);
-  Student* notolivermathias = new Student(1,1);
+  reggie->update_current_tick();
+  Student* notolivermathias = new Student(0,1);
 
   cout << "Students Waiting: "<< reggie->get_students_waiting() << endl;
   reggie->add_student_to_queue(notolivermathias);
   cout << "Students Waiting: "<< reggie->get_students_waiting() << endl;
   cout << "Windows Open: "<<reggie->get_number_of_windows_open() << endl;
+  reggie->increment_all_student_wait_times_if_in_line_and_have_arrived();
+  reggie->increment_all_student_wait_times_if_in_line_and_have_arrived();
+  reggie->increment_all_student_wait_times_if_in_line_and_have_arrived();
   reggie->send_first_student_in_line_to_first_open_window();
   cout << "Windows Open: "<< reggie->get_number_of_windows_open() << endl;
   reggie->increment_student_window_times_if_at_windows();
+  reggie->increment_student_window_times_if_at_windows();
+
   reggie->move_done_students();
   cout << "Windows Open: "<< reggie->get_number_of_windows_open() << endl;
 }

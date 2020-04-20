@@ -19,6 +19,7 @@ class Student
     int get_arrival_time();
     void increment_number_of_minutes_at_window();
     int get_number_of_minutes_at_window();
+    int get_number_of_minutes_in_line();
     bool isDone();
 
   private:
