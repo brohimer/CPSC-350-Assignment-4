@@ -80,3 +80,11 @@ int StudentQueue::numberOfArrivedStudents(int current_tick)
 
   return return_value;
 }
+
+void StudentQueue::increment_all_student_wait_times_if_in_line_and_have_arrived()
+{
+  for (int i = 1; i < size(); i++)
+  {
+    Student current_student = list->returnObjectAtIndex(i);
+  }
+}

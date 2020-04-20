@@ -15,16 +15,8 @@ int main(int argc, char** argv)
 
   //making a new registrar with 5 windows
 
-  Registrar* reggie = new Registrar(5);
-  Student* notolivermathias = new Student();
-  cout << reggie->get_students_waiting() << endl;
-  reggie->add_student_to_queue(notolivermathias);
-  cout << reggie->get_students_waiting() << endl;
-  cout << reggie->get_number_of_windows_open() << endl;
-  cout << reggie->get_index_of_first_available_window() << endl;
-  reggie->send_first_student_in_line_to_first_open_window();
-  cout << reggie->get_number_of_windows_open() << endl;
-  reggie->move_done_students();
+  Simulation* simmy = new Simulation();
+  simmy->test();
 
   /*
   Flow:

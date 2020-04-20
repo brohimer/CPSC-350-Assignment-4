@@ -23,6 +23,8 @@ class StudentQueue : public List<Student>
     int numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime();
     int numberOfArrivedStudents(int current_tick);
 
+    void increment_all_student_wait_times_if_in_line_and_have_arrived();
+
 
   private:
     DoublyLinkedList<Student>* list;

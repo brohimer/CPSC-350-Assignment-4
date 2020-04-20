@@ -9,6 +9,8 @@ class Simulation
     Simulation();
     ~Simulation();
     void start(string file);
+    void test();
+    
   private:
     Registrar* m_registrar;
 

@@ -10,6 +10,22 @@ Simulation::~Simulation()
   delete m_registrar;
 }
 
+void Simulation::test()
+{
+  Registrar* reggie = new Registrar(5);
+  Student* notolivermathias = new Student(1,1);
+
+  cout << "Students Waiting: "<< reggie->get_students_waiting() << endl;
+  reggie->add_student_to_queue(notolivermathias);
+  cout << "Students Waiting: "<< reggie->get_students_waiting() << endl;
+  cout << "Windows Open: "<<reggie->get_number_of_windows_open() << endl;
+  reggie->send_first_student_in_line_to_first_open_window();
+  cout << "Windows Open: "<< reggie->get_number_of_windows_open() << endl;
+  reggie->increment_student_window_times_if_at_windows();
+  reggie->move_done_students();
+  cout << "Windows Open: "<< reggie->get_number_of_windows_open() << endl;
+}
+
 void Simulation::start(string file)
 {
   ifstream inFS;

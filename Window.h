@@ -13,9 +13,9 @@ class Window
     void setOccupied();
     void setUnoccupied();
     void increment_idle_time();
-    void insert_student(Student* student);
-    Student* remove_student();
-    Student* return_student();
+    void insert_student(Student student);
+    Student remove_student();
+    Student return_student();
     int getIdleTime();
     void increment_student_window_time();
     bool check_if_student_is_done();
@@ -24,6 +24,6 @@ class Window
   private:
     bool Occupied;
     int total_idle_time;
-    Student* student_at_window;
+    Student student_at_window;
 
 };

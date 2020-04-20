@@ -29,6 +29,7 @@ void Student::update_tick()
 void Student::increment_number_of_minutes_at_window()
 {
   number_of_minutes_at_window += 1;
+  cout << "Incremented to: "<< number_of_minutes_at_window << endl;
 }
 
 int Student::get_number_of_minutes_at_window()
