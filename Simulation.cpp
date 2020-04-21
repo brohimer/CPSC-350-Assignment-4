@@ -13,23 +13,23 @@ Simulation::~Simulation()
 void Simulation::test()
 {
   Registrar* reggie = new Registrar(5);
-  reggie->update_current_tick();
+  reggie->updateCurrentTick();
   Student* notolivermathias = new Student(0,1);
 
-  cout << "Students Waiting: "<< reggie->get_students_waiting() << endl;
-  reggie->add_student_to_queue(notolivermathias);
-  cout << "Students Waiting: "<< reggie->get_students_waiting() << endl;
-  cout << "Windows Open: "<<reggie->get_number_of_windows_open() << endl;
-  reggie->increment_all_student_wait_times_if_in_line_and_have_arrived();
-  reggie->increment_all_student_wait_times_if_in_line_and_have_arrived();
-  reggie->increment_all_student_wait_times_if_in_line_and_have_arrived();
-  reggie->send_first_student_in_line_to_first_open_window();
-  cout << "Windows Open: "<< reggie->get_number_of_windows_open() << endl;
-  reggie->increment_student_window_times_if_at_windows();
-  reggie->increment_student_window_times_if_at_windows();
+  cout << "Students Waiting: "<< reggie->getStudentsWaiting() << endl;
+  reggie->addStudentToQueue(notolivermathias);
+  cout << "Students Waiting: "<< reggie->getStudentsWaiting() << endl;
+  cout << "Windows Open: "<<reggie->getWindowsOpen() << endl;
+  reggie->incArrivedStudentWaitTimes();
+  reggie->incArrivedStudentWaitTimes();
+  reggie->incArrivedStudentWaitTimes();
+  reggie->sendFirstStudentToFirstOpenWindow();
+  cout << "Windows Open: "<< reggie->getWindowsOpen() << endl;
+  reggie->incStudentWindowTimes();
+  reggie->incStudentWindowTimes();
 
-  reggie->move_done_students();
-  cout << "Windows Open: "<< reggie->get_number_of_windows_open() << endl;
+  reggie->moveDoneStudents();
+  cout << "Windows Open: "<< reggie->getWindowsOpen() << endl;
 }
 
 void Simulation::start(string file)
@@ -74,13 +74,13 @@ void Simulation::start(string file)
           else if (lineNumber != targetLineNumber)
           {
             cout << line << " Making a student" << endl;
-            m_registrar->add_student_to_queue(new Student(stoi(line), minuteArrived));
+            m_registrar->addStudentToQueue(new Student(stoi(line), minuteArrived));
           }
           //This is the last student before next block of info
           else
           {
             cout << line << " Making last student" << endl;
-            m_registrar->add_student_to_queue(new Student(stoi(line), minuteArrived));
+            m_registrar->addStudentToQueue(new Student(stoi(line), minuteArrived));
             newBlock = true;
           }
         }
@@ -99,11 +99,9 @@ void Simulation::start(string file)
   inFS.close();
 
   //Just printing each student in the queue to test
-  while (!m_registrar->empty_queue())
+  while (!m_registrar->queueEmpty())
   {
     cout << "\nRemoving student from front " << endl;
-    m_registrar->remove_student_from_queue().printInfo();
+    m_registrar->removeStudentFromQueue().printInfo();
   }
-
-
 }

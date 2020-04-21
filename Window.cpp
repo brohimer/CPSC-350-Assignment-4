@@ -1,66 +1,76 @@
 #include "Window.h"
 
+//Window implementation
+
+//Default constructor
 Window::Window()
 {
-  Occupied = false;
-  total_idle_time = 0;
-  //cout << "Window Created" << endl;
+  m_occupied = false;
+  m_totalIdleTime = 0;
 }
 
-Window::~Window()
-{
+//Destructor
+Window::~Window() { }
 
-}
-
+//Returns true if occupied
 bool Window::isOccupied()
 {
-  return Occupied;
+  return m_occupied;
 }
 
+//Returns true if student is done
+bool Window::studentDone()
+{
+  return (m_student.isDone());
+}
+
+//Sets window to occupied
 void Window::setOccupied()
 {
-  Occupied = true;
+  m_occupied = true;
 }
 
+//Sets window to unoccupied
 void Window::setUnoccupied()
 {
-  Occupied = false;
+  m_occupied = false;
 }
 
-void Window::increment_idle_time()
+//Increments idle time
+void Window::incIdleTime()
 {
-  total_idle_time += 1;
+  m_totalIdleTime += 1;
 }
 
-void Window::increment_student_window_time()
+//Increments the student's window time
+void Window::incStudentWindowTime()
 {
-  if (Occupied)
-    student_at_window.increment_number_of_minutes_at_window();
+  if (m_occupied)
+    m_student.incMinutesAtWindow();
 }
 
-void Window::insert_student(Student student)
+//Inserts a student at window
+void Window::insertStudent(Student student)
 {
-  student_at_window = student;
-  Occupied = true;
+  m_student = student;
+  m_occupied = true;
 }
 
-Student Window::remove_student()
+//Removes and returns a student from window
+Student Window::removeStudent()
 {
-  Occupied = false;
-  return student_at_window;
+  m_occupied = false;
+  return m_student;
 }
 
-Student Window::return_student()
+//Returns student at window
+Student Window::getStudent()
 {
-  return student_at_window;
+  return m_student;
 }
 
+//Returns the idle time
 int Window::getIdleTime()
 {
-  return total_idle_time;
-}
-
-bool Window::check_if_student_is_done()
-{
-  return (student_at_window.isDone());
+  return m_totalIdleTime;
 }

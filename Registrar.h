@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "StudentQueue.h"
 
+//Registrar header
+
 class Registrar
 {
 
@@ -9,32 +11,36 @@ class Registrar
 
   public:
     Registrar(); //Default constructor
-    Registrar(int num_windows); //overload constructor
+    Registrar(int windows); //Overloaded constructor for number of windows
     ~Registrar(); //Destructor
 
-    // void update_students_waiting();
-    int get_students_waiting();
+    bool queueEmpty(); //Returns true if no students are waiting
 
-    int get_index_of_first_available_window();
-    void update_number_of_windows_open();
-    int get_number_of_windows_open();
-    void add_student_to_queue(Student* student);
-    Student remove_student_from_queue();
-    bool empty_queue();
-    void update_students_waiting();
-    void update_current_tick();
-    void send_first_student_in_line_to_first_open_window();
-    void increment_student_window_times_if_at_windows();
-    void move_done_students();
-    void increment_all_student_wait_times_if_in_line_and_have_arrived();
+    Student removeStudentFromQueue(); //Removes and returns the first waiting student
+
+    int getStudentsWaiting(); //Returns the number of students waiting
+    int getFirstOpenWindowIndex(); //Returns the index of the first open window
+    int getWindowsOpen(); //Returns the number of open windows
+
+    void updateWindowsOpen(); //Updates the number of windows open
+    void updateStudentsWaiting(); //Updates the number of students waiting
+    void updateCurrentTick(); //Updates the current clock tick
+
+    void addStudentToQueue(Student* student); //Adds a student to the queue
+
+    void sendFirstStudentToFirstOpenWindow(); //Sends the first student to the first window
+    void moveDoneStudents(); //Clears done students from the windows
+
+    void incStudentWindowTimes(); //Increments the window times of students
+    void incArrivedStudentWaitTimes(); //Increments the wait times of arrived students in queue
 
   private:
-    int current_tick;
-    int windows_open;
-    int total_windows;
-    int students_waiting;
-    Window* windows;
-    StudentQueue* students;
-    StudentQueue* doneStudents;
+    int m_currentTick; //Current tick
+    int m_windowsOpen; //Number of open windows
+    int m_totalWindows; //Total number of windows
+    int m_studentsWaiting; //Number of students waiting
+    Window* m_windows; //Array of windows
+    StudentQueue* m_students; //Queue of waiting students
+    StudentQueue* m_doneStudents; //Queue of finished students
 
 };

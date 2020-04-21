@@ -1,63 +1,63 @@
 #include "StudentQueue.h"
 
+//Implementation of StudentQueue
+
+//Default constructor
 StudentQueue::StudentQueue()
 {
-  list = new DoublyLinkedList<Student>();
+  m_list = new DoublyLinkedList<Student>();
 }
 
+//Destructor
 StudentQueue::~StudentQueue()
 {
-  delete list;
+  delete m_list;
 }
 
-void StudentQueue::insertFront(Student data)
-{
-  //No implementation needed.
-}
+//No implementation needed
+void StudentQueue::insertFront(Student data) { }
 
 void StudentQueue::insertBack(Student data)
 {
-  list->insertBack(data);
+  m_list->insertBack(data);
 }
 
+//Removes and returns a student from the front
 Student StudentQueue::removeFront()
 {
-  return list->removeFront();
+  return m_list->removeFront();
 }
 
-Student StudentQueue::removeBack()
-{
-  //No implementation needed.
-}
+//No implementation needed
+Student StudentQueue::removeBack() { }
 
-Student StudentQueue::removeAtPos(int pos)
-{
-  //No implementation needed.
-}
+//No implementation needed
+Student StudentQueue::removeAtPos(int pos) { }
 
-Student StudentQueue::remove(Student val)
-{
-  //No implementation needed.
-}
+//No implementation needed
+Student StudentQueue::remove(Student val) { }
 
+//Returns true if empty
 bool StudentQueue::isEmpty()
 {
-  return list->isEmpty();
+  return m_list->isEmpty();
 }
 
+//Returns the size of the queue
 int StudentQueue::size()
 {
-  return list->getSize();
+  return m_list->getSize();
 }
 
-int StudentQueue::numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime()
+//Returns the number of arrived students behind the first
+int StudentQueue::numberOfArrivedStudentsBehindFirst()
 {
   int return_value = 0;
-  int first_student_arival_time = list->returnObjectAtIndex(0).get_arrival_time();
+  int first_student_arival_time = m_list->returnObjectAtIndex(0).getMinuteArrived();
   for (int i = 1; i < size(); i++)
   {
-    Student current_student = list->returnObjectAtIndex(i);
-    if (current_student.get_arrival_time() == first_student_arival_time)
+    Student current_student = m_list->returnObjectAtIndex(i);
+    if (current_student.getMinuteArrived() == first_student_arival_time)
     {
       return_value++;
     }
@@ -66,32 +66,33 @@ int StudentQueue::numberOfStudentsBehindTheFirstThatArrivedAtTheSameTime()
   return return_value;
 }
 
+//Returns the number of arrived students at current time
 int StudentQueue::numberOfArrivedStudents(int current_tick)
 {
   int return_value = 0;
   for (int i = 0; i < size(); i++)
   {
-    Student current_student = list->returnObjectAtIndex(i);
-    if (current_student.get_arrival_time() <= current_tick)
+    Student current_student = m_list->returnObjectAtIndex(i);
+    if (current_student.getMinuteArrived() <= current_tick)
     {
       return_value++;
     }
   }
-
   return return_value;
 }
 
-void StudentQueue::increment_all_student_wait_times_if_in_line_and_have_arrived(int current_tick)
+//Increments the wait times of arrived students
+void StudentQueue::incArrivedStudentWaitTimes(int current_tick)
 {
   for (int i = 0; i < size(); i++)
   {
-    Student* current_student = list->returnObjectPointerAtIndex(i);
+    Student* current_student = m_list->returnObjectPointerAtIndex(i);
     //this means the student has arrived.
-    if (current_student->get_arrival_time() <= current_tick)
+    if (current_student->getMinuteArrived() <= current_tick)
     {
       //incrementing wait time in line
-      current_student->update_tick();
-      cout << current_student->get_number_of_minutes_in_line() << endl;
+      current_student->incMinutesWaited();
+      cout << current_student->getMinutesWaited() << endl;
     }
   }
 }

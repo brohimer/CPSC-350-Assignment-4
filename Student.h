@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+//Header for Student
+
 class Student
 {
   //.amount of time they will take, .time they arrived,
@@ -11,22 +13,25 @@ class Student
 
   public:
     Student(); //Default constructor
-    Student(int duration, int arrival); //Overloaded constructor
+    Student(int duration, int arrival); //Overloaded constructor for minutes needed and time arrived
     ~Student(); //Destructor
 
-    void update_tick();
-    void printInfo();
-    int get_arrival_time();
-    void increment_number_of_minutes_at_window();
-    int get_number_of_minutes_at_window();
-    int get_number_of_minutes_in_line();
-    bool isDone();
+    void incMinutesWaited(); //Updates minutes waited in the queue
+    void incMinutesAtWindow(); //Increments the number of minutes at the window
+
+    int getMinuteArrived(); //Returns the minute arrived at the registrar
+    int getMinutesWaited(); //Returns the number of minutes waited in the queue
+    int getMinutesAtWindow(); //Returns the number of minutes at the window
+    bool isDone(); //Returns true if student is done
+
+    void printInfo(); //Prints the stats of a student
 
   private:
-    int minutes_needed_at_window;
-    int minute_arrived;
-    int number_of_minutes_waited;
-    int number_of_minutes_at_window;
+    int m_minutesNeeded; //Minutes needed at the window
+    int m_minuteArrived; //Minute arrived at the registrar
+    int m_minutesWaited; //Minutes waited in the queue
+    int m_minutesAtWindow; //Minutes spent at the window
+
 };
 
 #endif

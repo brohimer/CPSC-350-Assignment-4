@@ -1,144 +1,157 @@
 #include "Registrar.h"
 
+//Registrar implementation
+
+//Default constructor
 Registrar::Registrar()
 {
-  current_tick = 0;
-  windows_open = 0;
-  total_windows = 0;
-  students_waiting = 0;
+  m_currentTick = 0;
+  m_windowsOpen = 0;
+  m_totalWindows = 0;
+  m_studentsWaiting = 0;
 
   //making an array of open windows
-  windows = new Window[5];
+  m_windows = new Window[5];
 
   //making a new empty student queue
-  students = new StudentQueue();
-  doneStudents = new StudentQueue();
+  m_students = new StudentQueue();
+  m_doneStudents = new StudentQueue();
 }
 
-Registrar::Registrar(int num_windows)
+//Overloaded constructor for number of windows
+Registrar::Registrar(int windows)
 {
-  current_tick = 0;
-  students_waiting = 0;
-  windows_open = num_windows;
-  total_windows = num_windows;
+  m_currentTick = 0;
+  m_studentsWaiting = 0;
+  m_windowsOpen = windows;
+  m_totalWindows = windows;
 
   //making an array of open windows
-  windows = new Window[num_windows];
+  m_windows = new Window[windows];
 
-  for (int i = 0; i < total_windows; ++i)
+  for (int i = 0; i < m_totalWindows; ++i)
   {
-    windows[i].setUnoccupied();
+    m_windows[i].setUnoccupied();
   }
 
   //making a new empty student queue
-  students = new StudentQueue();
-  doneStudents = new StudentQueue();
+  m_students = new StudentQueue();
+  m_doneStudents = new StudentQueue();
 }
 
-Registrar::~Registrar()
-{
+//Destructor
+Registrar::~Registrar() { }
 
+//Returns true if no students are waiting
+bool Registrar::queueEmpty()
+{
+  return m_studentsWaiting == 0;
 }
 
-int Registrar::get_index_of_first_available_window()
+//Removes and returns the first waiting student
+Student Registrar::removeStudentFromQueue()
 {
-  for (int i = 0; i < total_windows; ++i)
+  m_studentsWaiting--;
+  return m_students->removeFront();
+}
+
+ //Returns the number of students waiting
+int Registrar::getStudentsWaiting()
+{
+  return m_studentsWaiting;
+}
+
+//Returns the index of the first open window
+int Registrar::getFirstOpenWindowIndex()
+{
+  for (int i = 0; i < m_totalWindows; ++i)
   {
-    if (windows[i].isOccupied() == false)
+    if (m_windows[i].isOccupied() == false)
     {
       return i;
     }
   }
 }
 
-void Registrar::update_number_of_windows_open()
+//Returns the number of open windows
+int Registrar::getWindowsOpen()
+{
+  updateWindowsOpen();
+  return m_windowsOpen;
+}
+
+//Updates the number of windows open
+void Registrar::updateWindowsOpen()
 {
   int current_windows_open = 0;
-  for (int i = 0; i < total_windows; i++)
+  for (int i = 0; i < m_totalWindows; i++)
   {
-    if (!windows[i].isOccupied())
+    if (!m_windows[i].isOccupied())
       current_windows_open += 1;
   }
-  windows_open = current_windows_open;
+  m_windowsOpen = current_windows_open;
 }
 
-int Registrar::get_number_of_windows_open()
+//Updates the number of students waiting
+void Registrar::updateStudentsWaiting()
 {
-  update_number_of_windows_open();
-  return windows_open;
+  m_studentsWaiting = m_students->numberOfArrivedStudents(m_currentTick);
 }
 
-int Registrar::get_students_waiting()
+//Updates the current clock tick
+void Registrar::updateCurrentTick()
 {
-  return students_waiting;
+  m_currentTick++;
 }
 
-void Registrar::add_student_to_queue(Student* student)
+//Adds a student to the queue
+void Registrar::addStudentToQueue(Student* student)
 {
-  students->insertBack(*student);
-  students_waiting++;
+  m_students->insertBack(*student);
+  m_studentsWaiting++;
 }
 
-Student Registrar::remove_student_from_queue()
+//Sends the first student to the first window
+void Registrar::sendFirstStudentToFirstOpenWindow()
 {
-  students_waiting--;
-  return students->removeFront();
+  updateWindowsOpen();
+  if (m_windowsOpen < 1) cout << "NO WINDOWS OPEN" << endl;
+  Student first_student = removeStudentFromQueue();
+  m_windows[getFirstOpenWindowIndex()].insertStudent(first_student);
+  m_windowsOpen--;
 }
 
-bool Registrar::empty_queue()
+//Clears done students from the windows
+void Registrar::moveDoneStudents()
 {
-  return students_waiting == 0;
-}
-
-void Registrar::update_current_tick()
-{
-  current_tick++;
-}
-
-void Registrar::update_students_waiting()
-{
-  students_waiting = students->numberOfArrivedStudents(current_tick);
-}
-
-void Registrar::send_first_student_in_line_to_first_open_window()
-{
-  update_number_of_windows_open();
-  if (windows_open < 1) cout << "NO WINDOWS OPEN" << endl;
-  Student first_student = remove_student_from_queue();
-  windows[get_index_of_first_available_window()].insert_student(first_student);
-  windows_open--;
-}
-
-//increment students time at windows
-void Registrar::increment_student_window_times_if_at_windows()
-{
-  for (int i = 0; i < total_windows; i++)
+  for (int i = 0; i < m_totalWindows; i++)
   {
-    if (windows[i].isOccupied())
+    if (m_windows[i].isOccupied())
     {
-      windows[i].increment_student_window_time();
-    }
-  }
-}
-
-//clear done students from windows.
-void Registrar::move_done_students()
-{
-  for (int i = 0; i < total_windows; i++)
-  {
-    if (windows[i].isOccupied())
-    {
-      if (windows[i].check_if_student_is_done())
+      if (m_windows[i].studentDone())
       {
-        doneStudents->insertBack(windows[i].remove_student());
-        cout << "Mins in List: "<< doneStudents->removeFront().get_number_of_minutes_in_line() << endl;
+        m_doneStudents->insertBack(m_windows[i].removeStudent());
+        cout << "Mins in List: "<< m_doneStudents->removeFront().getMinutesWaited() << endl;
         cout << "Moved Done Student" << endl;
       }
     }
   }
 }
 
-void Registrar::increment_all_student_wait_times_if_in_line_and_have_arrived()
+//Increments the window times of students
+void Registrar::incStudentWindowTimes()
 {
-  students->increment_all_student_wait_times_if_in_line_and_have_arrived(current_tick);
+  for (int i = 0; i < m_totalWindows; i++)
+  {
+    if (m_windows[i].isOccupied())
+    {
+      m_windows[i].incStudentWindowTime();
+    }
+  }
+}
+
+//Increments the wait times of arrived students in queue
+void Registrar::incArrivedStudentWaitTimes()
+{
+  m_students->incArrivedStudentWaitTimes(m_currentTick);
 }

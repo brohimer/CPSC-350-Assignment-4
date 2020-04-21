@@ -10,9 +10,9 @@ template <class T>
 class ListNode
 {
   public:
-    T data;
-    ListNode<T>* next;
-    ListNode<T>* prev;
+    T m_data;
+    ListNode<T>* m_next;
+    ListNode<T>* m_prev;
 
     ListNode(); //Default constructor
     ListNode(T d); //Overloaded constructor
@@ -29,23 +29,23 @@ class ListNode
 template <class T>
 ListNode<T>:: ListNode()
 {
-  next = NULL;
-  prev = NULL;
+  m_next = NULL;
+  m_prev = NULL;
 }
 
 //Overloaded constructor
 template <class T>
 ListNode<T>:: ListNode(T d)
 {
-  data = d;
-  next = NULL;
-  prev = NULL;
+  m_data = d;
+  m_next = NULL;
+  m_prev = NULL;
 }
 
 //Destructor
 template <class T>
 ListNode<T>::~ListNode()
 {
-  delete next;
-  delete prev;
+  delete m_next;
+  delete m_prev;
 }

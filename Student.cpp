@@ -1,63 +1,64 @@
 #include "Student.h"
 
+//Implementation of Student
+
+//Default constructor
 Student::Student()
 {
-  minutes_needed_at_window = 0;
-  minute_arrived = 0;
-  number_of_minutes_waited = 0;
-  number_of_minutes_at_window = 0;
+  m_minutesNeeded = 0;
+  m_minuteArrived = 0;
+  m_minutesWaited = 0;
+  m_minutesAtWindow = 0;
 }
 
+//Overloaded constructor for minutes needed and time arrived
 Student::Student(int duration, int arrival)
 {
-  minutes_needed_at_window = duration;
-  minute_arrived = arrival;
-  number_of_minutes_waited = 0;
-  number_of_minutes_at_window = 0;
+  m_minutesNeeded = duration;
+  m_minuteArrived = arrival;
+  m_minutesWaited = 0;
+  m_minutesAtWindow = 0;
 }
 
-Student::~Student()
-{
+//Destructor
+Student::~Student() { }
 
+//Updates minutes waited in the queue
+void Student::incMinutesWaited()
+{
+  m_minutesWaited += 1;
 }
 
-void Student::update_tick()
+//Increments the number of minutes at the window
+void Student::incMinutesAtWindow()
 {
-  number_of_minutes_waited += 1;
+  m_minutesAtWindow += 1;
+  cout << "Incremented Window Mins to: "<< m_minutesAtWindow << endl;
 }
 
-void Student::increment_number_of_minutes_at_window()
+//Returns the minute arrived at the registrar
+int Student::getMinuteArrived()
 {
-  number_of_minutes_at_window += 1;
-  cout << "Incremented Window Mins to: "<< number_of_minutes_at_window << endl;
+  return m_minuteArrived;
 }
 
-int Student::get_number_of_minutes_at_window()
+//Returns the number of minutes waited in the queue
+int Student::getMinutesWaited()
 {
-  return number_of_minutes_at_window;
-}
-
-int Student::get_number_of_minutes_in_line()
-{
-  return number_of_minutes_waited;
+  return m_minutesWaited;
   cout << "incremented time in list" << endl;
 }
 
-void Student::printInfo()
+//Returns the number of minutes at the window
+int Student::getMinutesAtWindow()
 {
-  cout << "Minutes needed: " << minutes_needed_at_window << endl;
-  cout << "Minute arrived: " << minute_arrived << endl;
-  cout << "Minutes waited: " << number_of_minutes_waited << endl;
+  return m_minutesAtWindow;
 }
 
-int Student::get_arrival_time()
-{
-  return minute_arrived;
-}
-
+//Returns true if student is done
 bool Student::isDone()
 {
-  if (number_of_minutes_at_window >= minutes_needed_at_window)
+  if (m_minutesAtWindow >= m_minutesNeeded)
   {
     return true;
   }
@@ -65,4 +66,13 @@ bool Student::isDone()
   {
     return false;
   }
+}
+
+//Prints the stats of a student
+void Student::printInfo()
+{
+  cout << "Minutes needed: " << m_minutesNeeded << endl;
+  cout << "Minute arrived: " << m_minuteArrived << endl;
+  cout << "Minutes waited: " << m_minutesWaited << endl;
+  cout << "Minutes at window: " << m_minutesAtWindow << endl;
 }
