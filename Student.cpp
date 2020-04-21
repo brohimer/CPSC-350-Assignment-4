@@ -7,7 +7,7 @@ Student::Student()
 {
   m_minutesNeeded = 0;
   m_minuteArrived = 0;
-  m_minutesWaited = 0;
+  m_minutesWaited = -1;
   m_minutesAtWindow = 0;
 }
 
@@ -16,7 +16,7 @@ Student::Student(int duration, int arrival)
 {
   m_minutesNeeded = duration;
   m_minuteArrived = arrival;
-  m_minutesWaited = 0;
+  m_minutesWaited = -1;
   m_minutesAtWindow = 0;
 }
 
@@ -33,7 +33,7 @@ void Student::incMinutesWaited()
 void Student::incMinutesAtWindow()
 {
   m_minutesAtWindow += 1;
-  cout << "Incremented Window Mins to: "<< m_minutesAtWindow << endl;
+  // cout << "Incremented Window Mins to: "<< m_minutesAtWindow << endl;
 }
 
 //Returns the minute arrived at the registrar
@@ -46,7 +46,7 @@ int Student::getMinuteArrived()
 int Student::getMinutesWaited()
 {
   return m_minutesWaited;
-  cout << "incremented time in list" << endl;
+  // cout << "incremented time in list" << endl;
 }
 
 //Returns the number of minutes at the window
@@ -71,8 +71,10 @@ bool Student::isDone()
 //Prints the stats of a student
 void Student::printInfo()
 {
+  cout << "-------" << endl;
   cout << "Minutes needed: " << m_minutesNeeded << endl;
   cout << "Minute arrived: " << m_minuteArrived << endl;
   cout << "Minutes waited: " << m_minutesWaited << endl;
   cout << "Minutes at window: " << m_minutesAtWindow << endl;
+  cout << "-------" << endl;
 }

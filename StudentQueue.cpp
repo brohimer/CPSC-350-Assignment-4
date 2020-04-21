@@ -37,6 +37,12 @@ Student StudentQueue::removeAtPos(int pos) { }
 //No implementation needed
 Student StudentQueue::remove(Student val) { }
 
+//Returns the front student
+Student* StudentQueue::getFront()
+{
+  return m_list->returnObjectPointerAtIndex(0);
+}
+
 //Returns true if empty
 bool StudentQueue::isEmpty()
 {
@@ -92,7 +98,7 @@ void StudentQueue::incArrivedStudentWaitTimes(int current_tick)
     {
       //incrementing wait time in line
       current_student->incMinutesWaited();
-      cout << current_student->getMinutesWaited() << endl;
+      //cout << current_student->getMinutesWaited() << endl;
     }
   }
 }

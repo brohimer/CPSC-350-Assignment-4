@@ -15,32 +15,36 @@ class Registrar
     ~Registrar(); //Destructor
 
     bool queueEmpty(); //Returns true if no students are waiting
+    bool doneQueueEmpty(); //Returns true if done queue is empty
 
     Student removeStudentFromQueue(); //Removes and returns the first waiting student
 
     int getStudentsWaiting(); //Returns the number of students waiting
+    int getDoneStudents(); //Returns the number of done students
     int getFirstOpenWindowIndex(); //Returns the index of the first open window
     int getWindowsOpen(); //Returns the number of open windows
+    int getCurrentTick(); //Returns the current tick
 
     void updateWindowsOpen(); //Updates the number of windows open
     void updateStudentsWaiting(); //Updates the number of students waiting
-    void updateCurrentTick(); //Updates the current clock tick
 
     void addStudentToQueue(Student* student); //Adds a student to the queue
 
     void sendFirstStudentToFirstOpenWindow(); //Sends the first student to the first window
     void moveDoneStudents(); //Clears done students from the windows
 
+    void incCurrentTick(); //Updates the current clock tick
     void incStudentWindowTimes(); //Increments the window times of students
     void incArrivedStudentWaitTimes(); //Increments the wait times of arrived students in queue
+    Window* m_windows; //Array of windows
+    StudentQueue* m_students; //Queue of waiting students
+    StudentQueue* m_doneStudents; //Queue of finished students
 
   private:
     int m_currentTick; //Current tick
     int m_windowsOpen; //Number of open windows
     int m_totalWindows; //Total number of windows
-    int m_studentsWaiting; //Number of students waiting
-    Window* m_windows; //Array of windows
-    StudentQueue* m_students; //Queue of waiting students
-    StudentQueue* m_doneStudents; //Queue of finished students
+    int m_numStudentsWaiting; //Number of students waiting
+    int m_numDoneStudents; //Number of done students
 
 };

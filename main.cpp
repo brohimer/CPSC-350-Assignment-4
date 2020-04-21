@@ -15,8 +15,8 @@ int main(int argc, char** argv)
 
   //making a new registrar with 5 windows
 
-  Simulation* simmy = new Simulation();
-  simmy->test();
+  // Simulation* simmy = new Simulation();
+  // simmy->test();
 
   /*
   Flow:
