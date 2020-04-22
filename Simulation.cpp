@@ -96,6 +96,11 @@ void Simulation::start(string file)
       else
       {
         //cout << line << " Registrar Made." << endl;
+        if (stoi(line) < 1)
+        {
+          cout << "Registrar Needs at Least One Window." << endl;
+          exit(1);
+        }
         m_registrar = new Registrar(stoi(line));
       }
       lineNumber++;
