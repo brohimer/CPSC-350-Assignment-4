@@ -16,6 +16,10 @@
 #include <iomanip>
 #include "Simulation.h"
 
+#include <thread>
+#include <chrono>
+
+
 Simulation::Simulation() { }
 
 Simulation::~Simulation()
@@ -106,9 +110,11 @@ void Simulation::start(string file)
   //Now that we obtained all students and arrival times, we simulate
   while (m_registrar->getDoneStudents() != totalStudents)
   {
+    std::this_thread::sleep_for(1s);
     m_registrar->incCurrentTick();
     cout << endl << "tick: " << m_registrar->getCurrentTick() << endl;
     m_registrar->updateStudentsWaiting();
+
     m_registrar->updateWindowsOpen();
     m_registrar->incStudentWindowTimes();
     m_registrar->incArrivedStudentWaitTimes();
@@ -117,9 +123,12 @@ void Simulation::start(string file)
     //Set x to the number of arrived students,
     //and send as many to a window as possible
     int x = m_registrar->getStudentsWaiting();
-    for (int j = 0; j < x; ++j)
+    if (m_registrar->getWindowsOpen() > 0)
     {
-      m_registrar->sendFirstStudentToFirstOpenWindow();
+      for (int j = 0; j < x; ++j)
+      {
+        m_registrar->sendFirstStudentToFirstOpenWindow();
+      }
     }
   }
 

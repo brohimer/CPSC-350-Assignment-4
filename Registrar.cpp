@@ -166,11 +166,11 @@ void Registrar::addStudentToQueue(Student* student)
 //Sends the first student to the first window
 void Registrar::sendFirstStudentToFirstOpenWindow()
 {
-  if (m_windowsOpen < 1)
-  {
-    cout << "NO WINDOWS OPEN" << endl;
-  }
-  if (m_students->getFront().getMinuteArrived() == m_currentTick)
+  // if (m_windowsOpen < 1)
+  // {
+  //   cout << "NO WINDOWS OPEN" << endl;
+  // }
+  if (m_students->getFront().getMinuteArrived() <= m_currentTick)
   {
     Student first_student = removeStudentFromQueue();
     int i = getFirstOpenWindowIndex();
