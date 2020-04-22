@@ -37,12 +37,17 @@ void Simulation::start(string file)
   int totalStudents = 0;
 
   //Reading input file and parsing lines
-  inFS.open("test.txt");
+  inFS.open(file);
   while (!inFS.eof())
   {
     getline(inFS, line);
     if (!inFS.fail())
     {
+      if (stoi(line) < 0)
+      {
+        cout << "Negative Number Found in Input File." << endl;
+        exit(1);
+      }
       //Not first line of the file
       if (lineNumber != 0)
       {
