@@ -19,6 +19,16 @@ Student 2
 - Main.cpp
 
 ## 3. DESCRIPTION
+This assignment is modeled after a simplified version of Chapman's registrar office.
+It's goal is to provide average wait and idle times for the windows and students in the office so the registrars can make predictions about capacity requirements.
+
+It takes an input of a text file with information about the number of windows open,
+the number of students arrived, at what time they arrived, and how long they need at a
+window.
+
+### How to Run:
+  1. "make all"
+  2. "./assignment4 inputfilepath.txt"
 
 ## 4. REFERENCES
 - https://www.tutorialspoint.com/cplusplus/cpp_interfaces.htm
