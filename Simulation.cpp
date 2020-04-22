@@ -1,35 +1,11 @@
+#include <iomanip>
 #include "Simulation.h"
 
-Simulation::Simulation()
-{
-
-}
+Simulation::Simulation() { }
 
 Simulation::~Simulation()
 {
   delete m_registrar;
-}
-
-void Simulation::test()
-{
-  Registrar* reggie = new Registrar(5);
-  reggie->incCurrentTick();
-  Student* notolivermathias = new Student(0,1);
-
-  cout << "Students Waiting: "<< reggie->getStudentsWaiting() << endl;
-  reggie->addStudentToQueue(notolivermathias);
-  cout << "Students Waiting: "<< reggie->getStudentsWaiting() << endl;
-  cout << "Windows Open: "<<reggie->getWindowsOpen() << endl;
-  reggie->incArrivedStudentWaitTimes();
-  reggie->incArrivedStudentWaitTimes();
-  reggie->incArrivedStudentWaitTimes();
-  reggie->sendFirstStudentToFirstOpenWindow();
-  cout << "Windows Open: "<< reggie->getWindowsOpen() << endl;
-  reggie->incStudentWindowTimes();
-  reggie->incStudentWindowTimes();
-
-  reggie->moveDoneStudents();
-  cout << "Windows Open: "<< reggie->getWindowsOpen() << endl;
 }
 
 void Simulation::start(string file)
@@ -103,28 +79,18 @@ void Simulation::start(string file)
 
   int totalWindows = m_registrar->getWindowsOpen();
 
-  cout << endl << " testing!" << endl;
-  // m_registrar->incCurrentTick();
-  // m_registrar->incCurrentTick();
-  //
-  // m_registrar->updateStudentsWaiting();
-  // cout << m_registrar->getStudentsWaiting() << endl;
-  // m_registrar->sendFirstStudentToFirstOpenWindow();
-  // cout << m_registrar->getStudentsWaiting() << endl;
-  // m_registrar->sendFirstStudentToFirstOpenWindow();
-
+  cout << endl << "Running!" << endl;
 
   //Now that we obtained all students and arrival times, we simulate
   while (m_registrar->getDoneStudents() != totalStudents)
   {
     m_registrar->incCurrentTick();
+    cout << endl << "tick: " << m_registrar->getCurrentTick() << endl;
     m_registrar->updateStudentsWaiting();
     m_registrar->updateWindowsOpen();
     m_registrar->incStudentWindowTimes();
     m_registrar->incArrivedStudentWaitTimes();
     m_registrar->moveDoneStudents();
-
-    cout << "tick: " << m_registrar->getCurrentTick() << endl;
 
     //Set x to the number of arrived students,
     //and send as many to a window as possible
@@ -134,9 +100,76 @@ void Simulation::start(string file)
       m_registrar->sendFirstStudentToFirstOpenWindow();
     }
   }
+
+  //Now, we calculate the stats from our queue of finished students
+  double meanStudentWait = 0.0;
+  double medianStudentWait = 0.0;
+  int longestStudentWait = 0;
+  int studentsWaitingOverTenMin = 0;
+  double medianWindowIdle = 0.0;
+  int longestWindowIdle = 0;
+  int windowsIdleOverTenMin = 0;
+
+  //Calculate the mean  student wait time
+  //Calculate the median student wait time
+  //Calculate the number of wait times over 10
   for (int i = 0; i < totalStudents; ++i)
   {
-    cout << "ello" << endl;
-    m_registrar->m_doneStudents->removeFront().printInfo();
+    meanStudentWait += m_registrar->getDoneStudentAt(i).getMinutesWaited();
+    if (m_registrar->getDoneStudentAt(i).getMinutesWaited() > longestStudentWait)
+    {
+      longestStudentWait = m_registrar->getDoneStudentAt(i).getMinutesWaited();
+    }
+    if (m_registrar->getDoneStudentAt(i).getMinutesWaited() > 10)
+    {
+      studentsWaitingOverTenMin += 1;
+    }
   }
+  meanStudentWait /= totalStudents;
+
+  //Calculate the median of student wait time
+  if (totalStudents % 2 == 0)
+  {
+    //For an even lengthed queue
+    int leftMiddle = (totalStudents / 2) - 1;
+    int rightMiddle = (totalStudents / 2);
+    double leftWait = m_registrar->getDoneStudentAt(leftMiddle).getMinutesWaited();
+    double rightWait = m_registrar->getDoneStudentAt(rightMiddle).getMinutesWaited();
+    medianStudentWait = (leftWait + rightWait) / 2;
+  }
+  else
+  {
+    //For an odd lengthed queue
+    int middle = totalStudents / 2;
+    medianStudentWait = m_registrar->getDoneStudentAt(middle).getMinutesWaited();
+  }
+
+  //Calculate the mean window idle time
+  //Calculate the longest window idle time
+  //Calculate the number of windows idle over 5 minutes
+  for (int i = 0; i < totalWindows; ++i)
+  {
+    medianWindowIdle += m_registrar->getWindow(i).getIdleTime();
+    if (m_registrar->getWindow(i).getIdleTime() > longestWindowIdle)
+    {
+      longestWindowIdle = m_registrar->getWindow(i).getIdleTime();
+    }
+    if (m_registrar->getWindow(i).getIdleTime() > 5)
+    {
+      windowsIdleOverTenMin += 1;
+    }
+  }
+  medianWindowIdle /= totalWindows;
+
+
+  cout << endl << setw(50) << setfill('-') << " " << endl << endl;
+  cout << setw(50) << setfill(' ') << left << "SIMULATION RESULTS:" << endl << endl;
+  cout << setw(50) << setfill('.') << left << "Mean student wait time: " << " " << meanStudentWait << endl;
+  cout << setw(50) << left << "Median student wait time: " << " " << medianStudentWait << endl;
+  cout << setw(50) << left << "Longest student wait time: " << " " << longestStudentWait << endl;
+  cout << setw(50) << left << "Number of students waiting over 10 minutes: " << " " << studentsWaitingOverTenMin << endl;
+  cout << setw(50) << left << "Mean window idle time: " << " " << medianWindowIdle << endl;
+  cout << setw(50) << left << "Longest window idle time: " << " " << longestWindowIdle << endl;
+  cout << setw(50) << left << "Number of windows idle over 5 minutes: " << " " << windowsIdleOverTenMin << endl << endl;
+
 }

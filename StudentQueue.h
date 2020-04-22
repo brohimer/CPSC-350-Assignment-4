@@ -16,7 +16,8 @@ class StudentQueue : public List<Student>
     Student removeBack(); //No implementation needed
     Student removeAtPos(int pos); //No implementation needed
     Student remove(Student val); //No implementation needed
-    Student* getFront(); //Returns the front student
+    Student getFront(); //Returns the front student
+    Student getStudentAtIndex(int i); //Returns a student at the index
 
     bool isEmpty(); //Returns true if empty
     int size(); //Returns the size of the queue

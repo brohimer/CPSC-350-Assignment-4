@@ -18,12 +18,16 @@ class Registrar
     bool doneQueueEmpty(); //Returns true if done queue is empty
 
     Student removeStudentFromQueue(); //Removes and returns the first waiting student
+    Student removeStudentFromDoneQueue(); //Removes and returns a student from the queue of done students
 
     int getStudentsWaiting(); //Returns the number of students waiting
     int getDoneStudents(); //Returns the number of done students
     int getFirstOpenWindowIndex(); //Returns the index of the first open window
     int getWindowsOpen(); //Returns the number of open windows
     int getCurrentTick(); //Returns the current tick
+    Window getWindow(int i); //Returns the window at the index
+    Student getFirstDoneStudent(); //Returns the first done student to get its info
+    Student getDoneStudentAt(int i); //Returns a done student at an index
 
     void updateWindowsOpen(); //Updates the number of windows open
     void updateStudentsWaiting(); //Updates the number of students waiting
@@ -36,9 +40,6 @@ class Registrar
     void incCurrentTick(); //Updates the current clock tick
     void incStudentWindowTimes(); //Increments the window times of students
     void incArrivedStudentWaitTimes(); //Increments the wait times of arrived students in queue
-    Window* m_windows; //Array of windows
-    StudentQueue* m_students; //Queue of waiting students
-    StudentQueue* m_doneStudents; //Queue of finished students
 
   private:
     int m_currentTick; //Current tick
@@ -46,5 +47,8 @@ class Registrar
     int m_totalWindows; //Total number of windows
     int m_numStudentsWaiting; //Number of students waiting
     int m_numDoneStudents; //Number of done students
+    StudentQueue* m_students; //Queue of waiting students
+    StudentQueue* m_doneStudents; //Queue of finished students
+    Window* m_windows; //Array of windows
 
 };

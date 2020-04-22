@@ -38,9 +38,15 @@ Student StudentQueue::removeAtPos(int pos) { }
 Student StudentQueue::remove(Student val) { }
 
 //Returns the front student
-Student* StudentQueue::getFront()
+Student StudentQueue::getFront()
 {
-  return m_list->returnObjectPointerAtIndex(0);
+  return m_list->returnObjectAtIndex(0);
+}
+
+//Returns a student at the index
+Student StudentQueue::getStudentAtIndex(int i)
+{
+  return m_list->returnObjectAtIndex(i);
 }
 
 //Returns true if empty

@@ -61,6 +61,12 @@ Student Registrar::removeStudentFromQueue()
   return m_students->removeFront();
 }
 
+//Removes and returns a student from the queue of done students
+Student Registrar::removeStudentFromDoneQueue()
+{
+  return m_doneStudents->removeFront();
+}
+
  //Returns the number of students waiting
 int Registrar::getStudentsWaiting()
 {
@@ -95,6 +101,22 @@ int Registrar::getWindowsOpen()
 int Registrar::getCurrentTick()
 {
   return m_currentTick;
+}
+
+//Returns the pointer to the windows
+Window Registrar::getWindow(int i)
+{
+  return m_windows[i];
+}
+
+Student Registrar::getFirstDoneStudent()
+{
+  return m_doneStudents->getFront();
+}
+
+Student Registrar::getDoneStudentAt(int i)
+{
+  return m_doneStudents->getStudentAtIndex(i);
 }
 
 //Updates the number of windows open
@@ -132,7 +154,7 @@ void Registrar::sendFirstStudentToFirstOpenWindow()
   {
     cout << "NO WINDOWS OPEN" << endl;
   }
-  if (m_students->getFront()->getMinuteArrived() == m_currentTick)
+  if (m_students->getFront().getMinuteArrived() == m_currentTick)
   {
     Student first_student = removeStudentFromQueue();
     int i = getFirstOpenWindowIndex();
@@ -154,7 +176,7 @@ void Registrar::moveDoneStudents()
         m_windows[i].setUnoccupied();
         m_doneStudents->insertBack(m_windows[i].removeStudent());
         // m_doneStudents->removeFront().printInfo();
-        // cout << "Moved Done Student" << endl;
+        cout << "Moved Done Student" << endl;
       }
     }
   }

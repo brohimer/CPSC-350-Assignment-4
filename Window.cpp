@@ -6,7 +6,7 @@
 Window::Window()
 {
   m_occupied = false;
-  m_totalIdleTime = 0;
+  m_totalIdleTime = -1;
 }
 
 //Destructor
