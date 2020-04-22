@@ -115,7 +115,7 @@ void Simulation::start(string file)
   //Now that we obtained all students and arrival times, we simulate
   while (m_registrar->getDoneStudents() != totalStudents)
   {
-    std::this_thread::sleep_for(1s);
+    //std::this_thread::sleep_for(1s);
     m_registrar->incCurrentTick();
     cout << endl << "tick: " << m_registrar->getCurrentTick() << endl;
     m_registrar->updateStudentsWaiting();
@@ -128,13 +128,15 @@ void Simulation::start(string file)
     //Set x to the number of arrived students,
     //and send as many to a window as possible
     int x = m_registrar->getStudentsWaiting();
-    if (m_registrar->getWindowsOpen() > 0)
+    cout << "X: " << x << endl;
+    for (int j = 0; j < x; ++j)
     {
-      for (int j = 0; j < x; ++j)
+      if (m_registrar->getWindowsOpen() > 0)
       {
         m_registrar->sendFirstStudentToFirstOpenWindow();
       }
     }
+
   }
 
   //Now, we calculate the stats from our queue of finished students
