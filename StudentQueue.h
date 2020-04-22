@@ -1,10 +1,21 @@
+// Student-1-Name: Curren Taber
+// Student-1-ID: 002325149
+// Student-2-Name: Oliver Mathias
+// Student-2-ID: 002289410
+// Prof: Rene German
+// Class: CPSC 350-1
+// Date: 4-22-2020
+// Assignment: Registrar Office
+
+/*
+  Header for the student queue
+*/
+
 #include "Student.h"
 #include "List.h"
 
 class StudentQueue : public List<Student>
 {
-  //Student Queue: isEmpty(), size(), insert(),
-  //remove() (remember this is fifo)
 
   public:
     StudentQueue(); //Default constructor

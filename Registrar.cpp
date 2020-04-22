@@ -1,3 +1,17 @@
+// Student-1-Name: Curren Taber
+// Student-1-ID: 002325149
+// Student-2-Name: Oliver Mathias
+// Student-2-ID: 002289410
+// Prof: Rene German
+// Class: CPSC 350-1
+// Date: 4-22-2020
+// Assignment: Registrar Office
+
+/*
+  This class is the registrar implementation
+  it controls most of the actions wrt. the queues and windows
+*/
+
 #include "Registrar.h"
 
 //Registrar implementation
@@ -109,11 +123,13 @@ Window Registrar::getWindow(int i)
   return m_windows[i];
 }
 
+//return the first done student
 Student Registrar::getFirstDoneStudent()
 {
   return m_doneStudents->getFront();
 }
 
+//returns the done student at index i
 Student Registrar::getDoneStudentAt(int i)
 {
   return m_doneStudents->getStudentAtIndex(i);

@@ -1,3 +1,18 @@
+// Student-1-Name: Curren Taber
+// Student-1-ID: 002325149
+// Student-2-Name: Oliver Mathias
+// Student-2-ID: 002289410
+// Prof: Rene German
+// Class: CPSC 350-1
+// Date: 4-22-2020
+// Assignment: Registrar Office
+
+/*
+  This student class implements all the
+  member variables and methods for the student object relating to
+  minutes waited, line location, window location, etc.
+*/
+
 #include "Student.h"
 
 //Implementation of Student

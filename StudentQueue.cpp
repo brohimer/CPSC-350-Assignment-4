@@ -1,3 +1,17 @@
+// Student-1-Name: Curren Taber
+// Student-1-ID: 002325149
+// Student-2-Name: Oliver Mathias
+// Student-2-ID: 002289410
+// Prof: Rene German
+// Class: CPSC 350-1
+// Date: 4-22-2020
+// Assignment: Registrar Office
+
+/*
+   The StudentQueue class implements a queue from the doubly linked list
+   template class and allows us to pull students, check their waiting times, etc.
+*/
+
 #include "StudentQueue.h"
 
 //Implementation of StudentQueue

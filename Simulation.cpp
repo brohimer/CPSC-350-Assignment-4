@@ -1,3 +1,18 @@
+// Student-1-Name: Curren Taber
+// Student-1-ID: 002325149
+// Student-2-Name: Oliver Mathias
+// Student-2-ID: 002289410
+// Prof: Rene German
+// Class: CPSC 350-1
+// Date: 4-22-2020
+// Assignment: Registrar Office
+
+/*
+  This simulation class contains all the logic
+  for the looping the input file, and creating
+  students and building the environment around the registrar
+*/
+
 #include <iomanip>
 #include "Simulation.h"
 
@@ -8,6 +23,8 @@ Simulation::~Simulation()
   delete m_registrar;
 }
 
+//the whole simulation flow is performed in here
+//simulates the students from input file
 void Simulation::start(string file)
 {
   ifstream inFS;
@@ -161,7 +178,7 @@ void Simulation::start(string file)
   }
   medianWindowIdle /= totalWindows;
 
-
+  //prints out the student statistics
   cout << endl << setw(50) << setfill('-') << " " << endl << endl;
   cout << setw(50) << setfill(' ') << left << "SIMULATION RESULTS:" << endl << endl;
   cout << setw(50) << setfill('.') << left << "Mean student wait time: " << " " << meanStudentWait << endl;
