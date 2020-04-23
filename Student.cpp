@@ -22,7 +22,7 @@ Student::Student()
 {
   m_minutesNeeded = 0;
   m_minuteArrived = 0;
-  m_minutesWaited = 0;
+  m_minutesWaited = -1;
   m_minutesAtWindow = 0;
 }
 
@@ -31,7 +31,7 @@ Student::Student(int duration, int arrival)
 {
   m_minutesNeeded = duration;
   m_minuteArrived = arrival;
-  m_minutesWaited = 0;
+  m_minutesWaited = -1;
   m_minutesAtWindow = 0;
 }
 

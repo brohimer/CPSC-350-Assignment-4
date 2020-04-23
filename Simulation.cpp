@@ -126,11 +126,13 @@ else
     //std::this_thread::sleep_for(1s);
     m_registrar->incCurrentTick();
     cout << endl << "tick: " << m_registrar->getCurrentTick() << endl;
-    m_registrar->updateStudentsWaiting();
 
+    m_registrar->updateStudentsWaiting();
     m_registrar->updateWindowsOpen();
+
     m_registrar->incStudentWindowTimes();
     m_registrar->incArrivedStudentWaitTimes();
+    
     m_registrar->moveDoneStudents();
 
     //Set x to the number of arrived students,
@@ -181,7 +183,7 @@ else
     int rightMiddle = (totalStudents / 2);
     double leftWait = m_registrar->getDoneStudentAt(leftMiddle).getMinutesWaited();
     double rightWait = m_registrar->getDoneStudentAt(rightMiddle).getMinutesWaited();
-    medianStudentWait = (leftWait + rightWait) / 2;
+    medianStudentWait = (leftWait + rightWait) / 2.0;
   }
   else
   {
