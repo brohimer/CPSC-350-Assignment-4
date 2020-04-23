@@ -128,12 +128,12 @@ else
     cout << endl << "tick: " << m_registrar->getCurrentTick() << endl;
 
     m_registrar->updateStudentsWaiting();
-    m_registrar->updateWindowsOpen();
 
     m_registrar->incStudentWindowTimes();
     m_registrar->incArrivedStudentWaitTimes();
-    
+
     m_registrar->moveDoneStudents();
+    m_registrar->updateWindowsOpen();
 
     //Set x to the number of arrived students,
     //and send as many to a window as possible
