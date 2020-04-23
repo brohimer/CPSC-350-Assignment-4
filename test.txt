@@ -1,8 +1,13 @@
 1
-1
+3
 2
 5
-10
-3
-1
-4
+5
+
+Mean student wait time: .......................... 0+5 / 2
+Median student wait time: ........................ 3
+Longest student wait time: ....................... 5
+Number of students waiting over 10 minutes: ...... 0
+Mean window idle time: ........................... 3
+Longest window idle time: ........................ 3
+Number of windows idle over 5 minutes: ........... 0

@@ -19,7 +19,7 @@
 //Default constructor
 Registrar::Registrar()
 {
-  m_currentTick = -1;
+  m_currentTick = 0;
   m_windowsOpen = 0;
   m_totalWindows = 0;
   m_numStudentsWaiting = 0;
@@ -35,7 +35,7 @@ Registrar::Registrar()
 //Overloaded constructor for number of windows
 Registrar::Registrar(int windows)
 {
-  m_currentTick = -1;
+  m_currentTick = 0;
   m_numStudentsWaiting = 0;
   m_windowsOpen = windows;
   m_totalWindows = windows;

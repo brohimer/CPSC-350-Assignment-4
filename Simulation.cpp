@@ -42,6 +42,8 @@ void Simulation::start(string file)
 
   //Reading input file and parsing lines
   inFS.open(file);
+  if (inFS.is_open())
+  {
   while (!inFS.eof())
   {
     getline(inFS, line);
@@ -106,6 +108,12 @@ void Simulation::start(string file)
       lineNumber++;
     }
   }
+}
+else
+{
+  cout << "Invalid Path Given!" << endl;
+  exit(1);
+}
   inFS.close();
 
   int totalWindows = m_registrar->getWindowsOpen();
