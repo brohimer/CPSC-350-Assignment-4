@@ -27,6 +27,7 @@ class Window
     void setOccupied(); //Sets window to occupied
     void setUnoccupied(); //Sets window to unoccupied
     void incIdleTime(); //Increments idle time
+    void decIdleTime(); //Decrements idle time
     void incStudentWindowTime(); //Increments the student's window time
     void insertStudent(Student student); //Inserts a student at window
 

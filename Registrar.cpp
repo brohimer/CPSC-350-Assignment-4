@@ -118,7 +118,7 @@ int Registrar::getCurrentTick()
 }
 
 //Returns the pointer to the windows
-Window Registrar::getWindow(int i)
+Window& Registrar::getWindow(int i)
 {
   return m_windows[i];
 }
@@ -166,10 +166,7 @@ void Registrar::addStudentToQueue(Student* student)
 //Sends the first student to the first window
 void Registrar::sendFirstStudentToFirstOpenWindow()
 {
-  // if (m_windowsOpen < 1)
-  // {
-  //   cout << "NO WINDOWS OPEN" << endl;
-  // }
+  m_windows[this->getFirstOpenWindowIndex()].decIdleTime();
   if (m_students->getFront().getMinuteArrived() <= m_currentTick)
   {
     Student first_student = removeStudentFromQueue();

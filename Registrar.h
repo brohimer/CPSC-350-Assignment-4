@@ -39,7 +39,7 @@ class Registrar
     int getFirstOpenWindowIndex(); //Returns the index of the first open window
     int getWindowsOpen(); //Returns the number of open windows
     int getCurrentTick(); //Returns the current tick
-    Window getWindow(int i); //Returns the window at the index
+    Window& getWindow(int i); //Returns the window at the index
     Student getFirstDoneStudent(); //Returns the first done student to get its info
     Student getDoneStudentAt(int i); //Returns a done student at an index
 

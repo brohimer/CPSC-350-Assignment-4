@@ -124,9 +124,7 @@ else
   while (m_registrar->getDoneStudents() != totalStudents)
   {
     //std::this_thread::sleep_for(1s);
-    m_registrar->incCurrentTick();
     cout << endl << "tick: " << m_registrar->getCurrentTick() << endl;
-
     m_registrar->updateStudentsWaiting();
 
     m_registrar->incStudentWindowTimes();
@@ -138,7 +136,8 @@ else
     //Set x to the number of arrived students,
     //and send as many to a window as possible
     int x = m_registrar->getStudentsWaiting();
-    cout << "X: " << x << endl;
+    // cout << "X: " << x << endl;
+    cout << m_registrar->getWindow(0).getIdleTime() << endl;
     for (int j = 0; j < x; ++j)
     {
       if (m_registrar->getWindowsOpen() > 0)
@@ -146,7 +145,15 @@ else
         m_registrar->sendFirstStudentToFirstOpenWindow();
       }
     }
+    if (m_registrar->getDoneStudents() < totalStudents)
+    {
+      m_registrar->incCurrentTick();
+    }
+  }
 
+  for (int i = 0; i < totalWindows; ++i)
+  {
+    m_registrar->getWindow(i).decIdleTime();
   }
 
   //Now, we calculate the stats from our queue of finished students

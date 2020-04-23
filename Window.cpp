@@ -56,6 +56,12 @@ void Window::incIdleTime()
   m_totalIdleTime += 1;
 }
 
+//Decrements idle time
+void Window::decIdleTime()
+{
+  m_totalIdleTime -= 1;
+}
+
 //Increments the student's window time
 void Window::incStudentWindowTime()
 {
