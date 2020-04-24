@@ -136,12 +136,6 @@ else
     //Set x to the number of arrived students,
     //and send as many to a window as possible
     int x = m_registrar->getStudentsWaiting();
-    // cout << "X: " << x << endl;
-    cout << m_registrar->getWindow(0).getIdleTime() << endl;
-    cout << m_registrar->getWindow(1).getIdleTime() << endl;
-    cout << m_registrar->getWindow(2).getIdleTime() << endl;
-    cout << m_registrar->getWindow(3).getIdleTime() << endl;
-    cout << m_registrar->getWindow(4).getIdleTime() << endl;
     for (int j = 0; j < x; ++j)
     {
       if (m_registrar->getWindowsOpen() > 0)
@@ -155,16 +149,6 @@ else
     }
   }
 
-  // for (int i = 0; i < totalWindows; ++i)
-  // {
-  //   m_registrar->getWindow(i).decIdleTime();
-  // }
-
-  cout << m_registrar->getWindow(0).getIdleTime() << endl;
-  cout << m_registrar->getWindow(1).getIdleTime() << endl;
-  cout << m_registrar->getWindow(2).getIdleTime() << endl;
-  cout << m_registrar->getWindow(3).getIdleTime() << endl;
-  cout << m_registrar->getWindow(4).getIdleTime() << endl;
 
   //Now, we calculate the stats from our queue of finished students
   double meanStudentWait = 0.0;

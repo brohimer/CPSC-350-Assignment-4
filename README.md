@@ -16,7 +16,7 @@ Student 2
 
 ## 2. SOURCE FILES
 - README.md
-- Main.cpp
+- main.cpp
 - DoublyLinkedList.h
 - List.h
 - ListNode.h
@@ -31,20 +31,32 @@ Student 2
 - StudentQueue.h
 - Window.cpp
 - Window.h
+- test.txt
 
 
 ## 3. DESCRIPTION
-This assignment is modeled after a simplified version of Chapman's registrar office.
-It's goal is to provide average wait and idle times for the windows and students in the office so the registrars can make predictions about capacity requirements.
+This assignment simulates Chapman's registrar office.
+The goal is to provide average wait and idle times for the windows and students in the office so the registrars can make predictions about capacity requirements.
 
-It takes an input of a text file with information about the number of windows open,
-the number of students arrived, at what time they arrived, and how long they need at a
-window.
+It takes an input of a text file with information about the number of windows open, the number of students arrived, the time they arrived, and how long they need at a window.
 
-### How to Run:
-  1. "make all"
-  2. "./assignment4 inputfilepath.txt"
+- How to Run:
+  - `cd` into the directory containing source files
+  - Type `make all` into your command line
+  - Type `./assignment4.out filename` into your command line
+  - Follow the menu prompts
+
+- Important Notes:
+  - You cannot use an empty input file.
+  - The input file must have one positive integer value per line.
+  - The first line represents the number of registrar windows.
+  - Following lines follow a repeating pattern of student: information:
+    - Time student(s) arrive
+    - Number of students arriving at specified time
+    - Time needed for student(s)
 
 ## 4. REFERENCES
+- Rene German
+- Data Structures and Algorithms
 - https://www.tutorialspoint.com/cplusplus/cpp_interfaces.htm
 - https://stackoverflow.com/questions/7558280/initializing-an-array-of-objects

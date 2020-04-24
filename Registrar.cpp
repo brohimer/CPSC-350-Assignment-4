@@ -171,7 +171,7 @@ void Registrar::sendFirstStudentToFirstOpenWindow()
   {
     Student first_student = removeStudentFromQueue();
     int i = getFirstOpenWindowIndex();
-    cout << "I'm moving to window " << i << endl;
+    cout << "Moved student to window " << i << endl;
     m_windows[i].insertStudent(first_student);
     m_windowsOpen--;
   }
