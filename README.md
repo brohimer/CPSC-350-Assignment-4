@@ -17,6 +17,21 @@ Student 2
 ## 2. SOURCE FILES
 - README.md
 - Main.cpp
+- DoublyLinkedList.h
+- List.h
+- ListNode.h
+- Makefile
+- Registrar.cpp
+- Registrar.h
+- Simulation.cpp
+- Simulation.h
+- Student.cpp
+- Student.h
+- StudentQueue.cpp
+- StudentQueue.h
+- Window.cpp
+- Window.h
+
 
 ## 3. DESCRIPTION
 This assignment is modeled after a simplified version of Chapman's registrar office.
